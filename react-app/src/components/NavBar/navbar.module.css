@@ -12,6 +12,7 @@ nav {
 }
 .homeLink {
   height: 40%;
+  margin-right: 1rem;
 }
 .link > * {
   height: 100%;
