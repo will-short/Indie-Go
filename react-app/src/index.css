@@ -1,4 +1,5 @@
 /* TODO Add site wide styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 /* Box sizing rules */
 *,
 *::before,
@@ -85,8 +86,23 @@ div#root {
   color: rgb(254, 254, 254);
   display: grid;
   grid-template-rows: 5rem 1fr;
+  font-family: Roboto, "Helvetica Neue";
 }
 :root {
+  --dark-background-color: #202225;
   --primary: #8a2be2;
   --secondary: #31bacd;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  background-color: inherit;
+  border: none;
 }

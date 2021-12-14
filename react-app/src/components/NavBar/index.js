@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import logo_words from "../images/capstone-logo-words.svg";
 import style from "./navbar.module.css";
+import SearchBar from "../SearchBar";
 const NavBar = () => {
   return (
     <nav>
@@ -14,6 +15,7 @@ const NavBar = () => {
         >
           <img src={logo_words} alt="" />
         </NavLink>
+        <SearchBar />
       </div>
     </nav>
   );
