@@ -1,0 +1,17 @@
+nav {
+  background-color: #4d4e51;
+  display: flex;
+  justify-content: center;
+}
+.content {
+  max-width: 75rem;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+.homeLink {
+  height: 40%;
+}
+.link > * {
+  height: 100%;
+}
