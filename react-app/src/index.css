@@ -81,6 +81,7 @@ div#root {
   min-height: 100%;
   overflow: hidden;
   text-rendering: optimizeSpeed;
+  position: relative;
   line-height: 1.5;
   background-color: #202225;
   color: rgb(254, 254, 254);
@@ -105,4 +106,8 @@ select {
   -webkit-appearance: none;
   background-color: inherit;
   border: none;
+}
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }
