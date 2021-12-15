@@ -14,7 +14,10 @@ export default function Login({ setSignUp, setModal }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    console.log(data);
+    setModal(false);
+  };
+  const demoLogin = async (e) => {
+    const data = await dispatch(login("demo@aa.io", "password"));
     setModal(false);
   };
 
@@ -48,7 +51,7 @@ export default function Login({ setSignUp, setModal }) {
         </div>
         <button>Sign in</button>
       </form>
-      <button>Demo user login</button>
+      <button onClick={demoLogin}>Demo user login</button>
     </div>
   );
 }

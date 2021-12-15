@@ -20,6 +20,7 @@ export default function Signup({ setModal }) {
   };
   useEffect(() => {
     let imageEl = document.querySelector(".modals_imageUpload__3jm60 > img");
+    console.log(image);
     if (image && imageEl) imageEl.src = URL.createObjectURL(image);
   }, [image]);
 
@@ -35,7 +36,13 @@ export default function Signup({ setModal }) {
       </div>
       <form onSubmit={handleSignup} className={style.signupForm}>
         <div className={style.imageUpload}>
-          <img src={image} alt="" />
+          <img
+            src={
+              image ||
+              "https://res.cloudinary.com/dc9htgupc/image/upload/c_fill,h_200,w_200/v1636578728/pmp8vba5hxtvgowpymnn.png"
+            }
+            alt=""
+          />
           <label htmlFor="upload">
             Upload Profile Image
             <input
