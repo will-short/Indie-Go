@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import style from "./user.module.css";
 function User() {
+  const session = useSelector((state) => state.session);
   const [user, setUser] = useState({});
   const { userId } = useParams();
-
   useEffect(() => {
     if (!userId) {
       return;
@@ -19,19 +20,21 @@ function User() {
   if (!user) {
     return null;
   }
-
   return (
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {user.username}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-    </ul>
+    <div className={style.container}>
+      <img src={user?.image_url} alt="" />
+      <span>
+        <strong>{user?.username}</strong>
+      </span>
+      <span>
+        Games listed: <strong>5</strong>
+      </span>
+      <span>tags:</span>
+      <div>Tags go here</div>
+      {session?.user?.id === +userId && (
+        <Link to={`/users/${user.id}/listings/new`}>New Listing</Link>
+      )}
+    </div>
   );
 }
 export default User;

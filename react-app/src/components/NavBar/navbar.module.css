@@ -4,10 +4,12 @@ nav {
   justify-content: center;
 }
 .content {
-  max-width: 75rem;
+  max-width: 90rem;
   width: 90%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding-right: 5rem;
   gap: 1rem;
 }
 .homeLink {
@@ -29,6 +31,10 @@ nav {
   outline: inherit;
   height: 24px;
 }
+.signIn {
+  width: 48px;
+}
+
 .userControls {
   display: flex;
   align-items: center;
@@ -36,11 +42,16 @@ nav {
   margin-left: 1rem;
 }
 .user {
+  position: relative;
   height: 24px;
   display: flex;
   align-items: center;
 }
-.user span:last-child {
+.user > img {
+  height: 100%;
+  border-radius: 50%;
+}
+.user span:last-of-type {
   font-size: 18px;
 }
 .userControls a {
