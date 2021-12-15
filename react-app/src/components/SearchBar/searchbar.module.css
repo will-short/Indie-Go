@@ -4,13 +4,13 @@
 }
 .search {
   width: 100%;
-  height: 2.25rem;
+  height: 3rem;
   border-radius: 2rem;
   background-color: var(--dark-background-color);
   font-size: 1rem;
   font-weight: normal;
   color: inherit;
-  padding: 0 1rem;
+  padding: 0 1.3rem;
 }
 .search::-webkit-search-cancel-button {
   position: relative;
@@ -23,7 +23,7 @@
 .container::after {
   background: url("./search_white_24dp.svg");
   right: 10px;
-  top: 0.4rem;
+  top: 0.7rem;
   position: absolute;
   content: "";
   width: 24px;

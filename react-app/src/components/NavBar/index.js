@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, NavLink, Route, Switch } from "react-router-dom";
-import LogoutButton from "../auth/LogoutButton";
 import logo_words from "../images/capstone-logo-words.svg";
 import style from "./navbar.module.css";
 import SearchBar from "../SearchBar";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import Modal from "../Modals";
 const NavBar = () => {
   const session = useSelector((state) => state.session);
   const [toggleUserInfo, setToggleUserInfo] = useState(true);
+  const [modal, setModal] = useState(false);
   function userControls() {
     if (session?.user) {
       return (
@@ -53,7 +54,11 @@ const NavBar = () => {
         </>
       );
     } else {
-      return <button className={style.signIn}>Sign in</button>;
+      return (
+        <button className={style.signIn} onClick={() => setModal(true)}>
+          Sign in
+        </button>
+      );
     }
   }
   return (
@@ -69,6 +74,7 @@ const NavBar = () => {
         <SearchBar />
         <div className={style.userControls}>{userControls()}</div>
       </div>
+      {modal && <Modal setModal={setModal} />}
     </nav>
   );
 };
