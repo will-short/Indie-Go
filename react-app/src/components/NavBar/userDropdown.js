@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, NavLink, Route, Switch } from "react-router-dom";
-import style from "./navbar.module.css";
 import dropDownStyle from "./dropDownStyle.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { logout } from "../../store/session";
 
 export default function UserDropdown() {
@@ -12,7 +10,7 @@ export default function UserDropdown() {
 
   return (
     <div className={dropDownStyle.userDropdown}>
-      <Link className={dropDownStyle.user} to="/profile">
+      <Link className={dropDownStyle.user} to={`/users/${session?.user.id}`}>
         <img src={session.user.image_url} alt="" />
         <h3>{session.user.username}</h3>
         <p>View your profile</p>

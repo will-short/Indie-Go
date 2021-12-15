@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import UsersList from "./components/UserList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,7 +38,7 @@ function App() {
           <UsersList />
         </Route>
         <Route path="/users/:userId" exact={true}>
-          <User />
+          <ProfilePage />
         </Route>
         <Route path="/" exact={true}>
           <h1>My Home Page</h1>
