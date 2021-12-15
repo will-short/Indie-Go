@@ -7,7 +7,7 @@ import { useState } from "react";
 import logo_words from "../images/capstone-logo-words.svg";
 import { signUp } from "../../store/session";
 import { useEffect } from "react";
-export default function Signup() {
+export default function Signup({ setModal }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +16,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     const data = await dispatch(signUp(image, username, email, password));
+    setModal(false);
   };
   useEffect(() => {
     let imageEl = document.querySelector(".modals_imageUpload__3jm60 > img");

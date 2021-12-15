@@ -5,14 +5,17 @@ import SearchBar from "../SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import logo_words from "../images/capstone-logo-words.svg";
+import { login } from "../../store/session";
 
-export default function Login({ setSignUp }) {
+export default function Login({ setSignUp, setModal }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = async (e) => {
     e.preventDefault();
-    // const data = await dispatch(login(email, password));
+    const data = await dispatch(login(email, password));
+    console.log(data);
+    setModal(false);
   };
 
   return (
