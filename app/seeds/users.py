@@ -9,7 +9,7 @@ def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password')
     db.session.add(demo)
-    for x in range(2, 20):
+    for x in range(2, 112):
         additionalUser = User(
             username=f'{fake.first_name()}{x}',
             email=fake.profile()['mail'],
