@@ -1,16 +1,19 @@
 .container {
   display: grid;
   grid-template-rows: auto 1fr;
+  width: 100% !important;
 }
 .carousel {
-  grid-row: span 5;
+  grid-row: span 2;
   position: relative;
+  height: 100%;
 }
 .carousel > span {
   position: absolute;
   height: 50%;
   width: max-content;
   display: flex;
+  padding: 0 5px;
   align-items: center;
   top: 25%;
   cursor: pointer;
@@ -29,42 +32,43 @@
   background-color: #1a1b1e;
   width: 100%;
   display: grid;
-  grid-template-rows: auto auto auto auto 1fr 75px;
-  grid-template-columns: 70% auto;
+  grid-template-rows: auto 1fr 4rem;
+  grid-template-columns: 65% auto;
   grid-auto-flow: column;
   column-gap: 1%;
-  row-gap: 10px;
 }
-.gameInfo > * {
-  height: max-content;
-}
+
 .rating,
-.release {
-  color: grey;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.release {
-  gap: 18px;
-}
+.release,
+.price,
 .tags {
+  width: 100%;
   color: grey;
+  justify-self: start;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
 }
+.owner {
+  align-self: center;
+  font-size: 1.4em;
+}
+
 .buttons {
   display: flex;
   justify-content: space-evenly;
   height: max-content;
   align-self: center;
-  margin-bottom: 10px;
 }
-.gameInfo > p {
-  font-size: 0.9em;
+
+.carousel img {
+  display: none;
 }
-.owner {
-  height: max-content;
-  align-self: center;
-  font-size: 1.4rem;
-  margin-left: 5px;
-  margin-bottom: 10px;
+.info {
+  margin-bottom: auto;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  row-gap: 5px;
 }

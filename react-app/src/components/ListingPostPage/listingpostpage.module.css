@@ -1,0 +1,14 @@
+.main {
+  display: grid;
+  padding: 0 19.5%;
+  margin: 1rem 0.5%;
+  grid-template-rows: 5rem 1fr;
+  row-gap: 2rem;
+  overflow: hidden;
+}
+.header > div {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid grey;
+}

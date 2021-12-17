@@ -8,6 +8,7 @@ import UsersList from "./components/UserList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import ProfilePage from "./components/ProfilePage";
+import ListingPostPage from "./components/ListingPostPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route path="/users/:userId" exact={true}>
           <ProfilePage />
+        </Route>
+        <Route path="/users/:userId/listings/new">
+          <ListingPostPage />
         </Route>
         <Route path="/" exact={true}>
           <h1>My Home Page</h1>
