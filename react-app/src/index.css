@@ -111,3 +111,31 @@ a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
+
+.primary-button,
+.primary-link,
+.secondary-link,
+.secondary-button {
+  font-size: 1rem;
+  background-color: var(--primary);
+  width: fit-content;
+  padding: 1ch 2ch;
+  border-radius: 2rem;
+  justify-self: flex-end;
+  border: none;
+  cursor: pointer;
+}
+.secondary-link,
+.secondary-button {
+  background-color: var(--secondary);
+}
+main::-webkit-scrollbar {
+  background: none !important;
+  border-radius: 10px;
+  margin: 5px 5px;
+  width: 14px;
+}
+main::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}

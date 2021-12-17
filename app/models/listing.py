@@ -1,5 +1,6 @@
 from .db import db
 from sqlalchemy.sql import func
+import json
 
 
 class Listing(db.Model):
@@ -27,7 +28,7 @@ class Listing(db.Model):
             'id': self.id,
             'name': self.name,
             'video_url': self.video_url,
-            'image_urls': self.image_urls,
+            'image_urls': json.loads(self.image_urls.replace("'", '"')),
             'description': self.description,
             "price": str(self.price),
             'owner_id': self.owner_id,
