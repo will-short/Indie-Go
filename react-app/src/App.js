@@ -41,7 +41,7 @@ function App() {
         <Route path="/users/:userId" exact={true}>
           <ProfilePage />
         </Route>
-        <Route path="/users/:userId/listings/new">
+        <Route path="/users/:userId/listings/new/:id">
           <ListingPostPage />
         </Route>
         <Route path="/" exact={true}>

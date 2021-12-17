@@ -1,14 +1,94 @@
 .main {
   display: grid;
   padding: 0 19.5%;
-  margin: 1rem 0.5%;
-  grid-template-rows: 5rem 1fr;
+  margin: 2rem 0.5%;
+  grid-template-rows: 6rem 1fr;
   row-gap: 2rem;
   overflow: hidden;
 }
-.header > div {
+.header {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+.header > a {
+  height: 90%;
+  aspect-ratio: 1;
+  position: relative;
+  z-index: 20;
+}
+.header > a > div {
   height: 100%;
   aspect-ratio: 1;
+  position: relative;
   border-radius: 50%;
+  border: 2px solid black;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 204% 100%;
+  background-image: linear-gradient(to right, black 50%, transparent 50%);
+  transition: background-position 1s;
+  background-position: -98% 0;
+}
+.header > a > div > span {
+  font-size: 3rem !important;
+}
+
+.header > a:hover > div:before {
+  content: " ";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 100%;
+  border: 7px solid rgba(128, 128, 128, 0.2);
+}
+.header > a.active > div {
+  border: 2px solid black;
+  background-position: -195% 0;
+  color: transparent;
+}
+header.header > a.active + span {
+  transition: background-position 0.9s 1s;
+  background-position: 0% 0;
+}
+header.header > a.active ~ a > div {
   border: 2px solid grey;
+  color: transparent;
+}
+header.header > a.active ~ a {
+  pointer-events: none;
+  cursor: default;
+}
+
+header.header > span {
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, black 50%, grey 50%);
+  transition: background-position 0.9s 1s;
+  background-position: 0% 0;
+}
+
+.header > a.active ~ span {
+  transition: background-position 0.9s 1s;
+  background-position: 100% 0;
+}
+
+.header > span {
+  height: 2px;
+  background-color: grey;
+  width: 20%;
+  align-self: center;
+}
+.header > a > span:last-of-type {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: grey;
+}
+.header > a:hover > span:last-of-type {
+  text-decoration: underline;
 }

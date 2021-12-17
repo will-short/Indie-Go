@@ -26,7 +26,7 @@ def seed_listings():
                 image_urls=str(gameData["image_urls"]),
                 video_url=gameData["video_url"],
                 price=gameData["price"][1:],
-                owner_id=(1 + ind//9)
+                owner_id=(1 + ind//8)
             )
             db.session.add(game)
             db.session.commit()

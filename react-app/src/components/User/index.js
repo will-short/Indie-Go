@@ -20,7 +20,7 @@ function User({ user }) {
       <span>tags:</span>
       <div>Tags go here</div>
       {session?.user?.id === +user?.id && (
-        <Link className="primary-link" to={`/users/${user.id}/listings/new`}>
+        <Link className="primary-link" to={`/users/${user.id}/listings/new/1`}>
           New Listing
         </Link>
       )}
