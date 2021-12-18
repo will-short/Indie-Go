@@ -34,9 +34,7 @@ export default function Carousel({ game }) {
         arrow_back_ios
       </span>
       {game.video_url && (
-        <video controls width="100%" ref={addRef}>
-          <source src={game.video_url} type="video/webm" />
-        </video>
+        <video controls width="100%" ref={addRef} src={game.video_url}></video>
       )}
       {carouselData.slice(1).map((image) => (
         <img src={image} alt="" ref={addRef} />

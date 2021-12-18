@@ -129,13 +129,21 @@ a {
 .secondary-button {
   background-color: var(--secondary);
 }
-main::-webkit-scrollbar {
+::-webkit-scrollbar {
   background: none !important;
   border-radius: 10px;
   margin: 5px 5px;
   width: 14px;
 }
-main::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: black;
   border-radius: 10px;
+}
+a#forward {
+  margin-top: 10px;
+  margin-right: 10%;
+}
+.disabled {
+  background-color: lightgray;
+  pointer-events: none;
 }
