@@ -6,7 +6,8 @@ import { useState } from "react";
 import { useRef } from "react";
 
 export default function Page1({ data, absPath }) {
-  let { name, setName, description, setDescription } = data;
+  let { name, setName, description, setDescription, price, setPrice } = data;
+
   let [linkToggle, setLinkToggle] = useState("");
   useEffect(() => {
     if (
@@ -36,6 +37,15 @@ export default function Page1({ data, absPath }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
+      </label>
+      <label htmlFor="price">
+        Price - (if blank game will be listed for free)
+        <input
+          name="number"
+          value={price}
+          placeholder="0.00"
+          onChange={(e) => setPrice(e.target.value)}
+        ></input>
       </label>
       <Link
         className={`primary-link ${linkToggle}`}

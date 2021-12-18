@@ -36,7 +36,7 @@ export default function GameInfo({ game, user }) {
           <div className={style.price}>
             PRICE:
             <span style={{ color: "white" }}>
-              {`$${game?.price}` || "Free"}
+              {game?.price ? `$${game?.price}` : "Free"}
             </span>
           </div>
           <div className={style.tags}>

@@ -19,6 +19,7 @@ export default function ListingPostPage() {
   const [description, setDescription] = useState("");
   const [video, setVideo] = useState();
   const [images, setImages] = useState([]);
+  const [price, setPrice] = useState();
   const [tags, setTags] = useState([]);
   let url = useLocation();
   const absPath = url.pathname.split("new")[0] + "new/";
@@ -67,7 +68,7 @@ export default function ListingPostPage() {
         </Route>
         <Route exact path={absPath + "2"}>
           <Page2
-            data={{ video, setVideo, images, setImages }}
+            data={{ video, setVideo, images, setImages, price, setPrice }}
             absPath={absPath}
           />
         </Route>

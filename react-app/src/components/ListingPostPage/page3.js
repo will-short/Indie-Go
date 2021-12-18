@@ -26,9 +26,13 @@ export default function Page3({ data, absPath }) {
     description,
     created_at,
   };
+
   return (
     <div className={style.page3Container}>
       <GameInfo game={game} user={session.user} />
+      <button className={`${style.submit} primary-button`}>
+        Post game listing!
+      </button>
     </div>
   );
 }

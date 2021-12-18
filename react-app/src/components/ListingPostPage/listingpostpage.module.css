@@ -146,3 +146,16 @@ header.header > span {
   grid-column: span 2;
   margin-bottom: 20px;
 }
+.page3Container button:not(.submit) {
+  pointer-events: none;
+}
+.page3Container button.submit {
+  padding: 2ch 4ch;
+  font-size: 1.2rem;
+  font-weight: bold;
+  place-self: center;
+}
+.page3Container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}

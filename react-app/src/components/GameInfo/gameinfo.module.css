@@ -28,6 +28,10 @@
 .carousel > span:last-of-type {
   right: 0;
 }
+.container img {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
 .gameInfo {
   background-color: #1a1b1e;
   width: 100%;

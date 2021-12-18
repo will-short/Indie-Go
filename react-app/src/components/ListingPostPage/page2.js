@@ -7,11 +7,11 @@ import { useState } from "react";
 export default function Page1({ data, absPath }) {
   let { video, setVideo, images, setImages } = data;
   let [linkToggle, setLinkToggle] = useState("");
-  let [image1, setImgage1] = useState();
-  let [image2, setImgage2] = useState();
-  let [image3, setImgage3] = useState();
-  let [image4, setImgage4] = useState();
-  let [image5, setImgage5] = useState();
+  let [image1, setImgage1] = useState(images[0]);
+  let [image2, setImgage2] = useState(images[1]);
+  let [image3, setImgage3] = useState(images[2]);
+  let [image4, setImgage4] = useState(images[3]);
+  let [image5, setImgage5] = useState(images[4]);
 
   useEffect(() => {
     images.length <= 0 ? setLinkToggle("disabled") : setLinkToggle("");

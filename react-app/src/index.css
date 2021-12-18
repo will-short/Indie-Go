@@ -124,6 +124,7 @@ a {
   justify-self: flex-end;
   border: none;
   cursor: pointer;
+  height: max-content;
 }
 .secondary-link,
 .secondary-button {
