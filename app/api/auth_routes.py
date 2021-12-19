@@ -63,8 +63,6 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-          str(form.data["image"]))
     try:
         image = form.data["image"]
     except:

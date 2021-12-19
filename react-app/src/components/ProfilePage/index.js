@@ -19,13 +19,12 @@ export default function ProfilePage() {
       setUser(user);
     })();
   }, [userId]);
-
   return (
     <main className={profilepageStyle.main}>
       <User user={user} />
       <div className={profilepageStyle.gameList}>
         {user?.listings?.map((listing) => (
-          <GameInfo game={listing} user={user} />
+          <GameInfo key={listing.id} game={listing} user={user} />
         ))}
       </div>
     </main>

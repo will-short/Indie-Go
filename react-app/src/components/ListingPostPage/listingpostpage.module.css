@@ -105,6 +105,7 @@ header.header > span {
   justify-self: center;
   justify-items: center;
   height: max-content;
+  position: relative;
 }
 .page1Container > label {
   width: 80%;
@@ -121,6 +122,7 @@ header.header > span {
 }
 .page2Container {
   margin-top: 20px;
+  padding-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;

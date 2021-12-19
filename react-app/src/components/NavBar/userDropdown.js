@@ -21,7 +21,7 @@ export default function UserDropdown() {
           dispatch(logout());
         }}
       >
-        <span class="material-icons-outlined">logout</span>
+        <span className="material-icons-outlined">logout</span>
         <span>Sign out</span>
       </button>
     </div>

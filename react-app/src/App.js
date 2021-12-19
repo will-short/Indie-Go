@@ -9,7 +9,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import ProfilePage from "./components/ProfilePage";
 import ListingPostPage from "./components/ListingPostPage";
-
+import { allListings } from "./store/listings";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -17,7 +17,8 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      setLoaded(true);
+      await dispatch(allListings());
+      await setLoaded(true);
     })();
   }, [dispatch]);
 

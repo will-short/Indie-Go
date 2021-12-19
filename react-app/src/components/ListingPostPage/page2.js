@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { Link, NavLink, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Redirect,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./listingpostpage.module.css";
 import { useState } from "react";
@@ -12,7 +18,6 @@ export default function Page1({ data, absPath }) {
   let [image3, setImgage3] = useState(images[2]);
   let [image4, setImgage4] = useState(images[3]);
   let [image5, setImgage5] = useState(images[4]);
-
   useEffect(() => {
     images.length <= 0 ? setLinkToggle("disabled") : setLinkToggle("");
     setImages([image1, image2, image3, image4, image5].filter((el) => el));

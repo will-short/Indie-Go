@@ -6,7 +6,7 @@ import json
 class Listing(db.Model):
     __tablename__ = 'listings'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False, unique=True)
+    name = db.Column(db.String(100), nullable=False)
     video_url = db.Column(db.String(255), nullable=True)
     image_urls = db.Column(db.Text(), nullable=False)
     description = db.Column(db.String(500), nullable=True)
@@ -22,6 +22,9 @@ class Listing(db.Model):
 
     def owner(self):
         return self.users.to_dict()
+
+    def listingId(self):
+        return self.id
 
     def to_dict(self):
         return {

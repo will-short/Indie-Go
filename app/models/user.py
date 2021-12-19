@@ -32,6 +32,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        self.listings.reverse()
         return {
             'id': self.id,
             'username': self.username,

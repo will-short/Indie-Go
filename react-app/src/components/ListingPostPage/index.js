@@ -32,7 +32,7 @@ export default function ListingPostPage() {
           activeClassName={style.active}
         >
           <div>
-            <span class="material-icons">done</span>
+            <span className="material-icons">done</span>
           </div>
           <span>Name/Description</span>
         </NavLink>
@@ -43,7 +43,7 @@ export default function ListingPostPage() {
           activeClassName={style.active}
         >
           <div>
-            <span class="material-icons">done</span>
+            <span className="material-icons">done</span>
           </div>
           <span>Media</span>
         </NavLink>
@@ -54,7 +54,7 @@ export default function ListingPostPage() {
           activeClassName={style.active}
         >
           <div>
-            <span class="material-icons">done</span>
+            <span className="material-icons">done</span>
           </div>
           <span>Preview</span>
         </NavLink>
@@ -74,7 +74,7 @@ export default function ListingPostPage() {
         </Route>
         <Route exact path={absPath + "3"}>
           <Page3
-            data={{ video, images, name, description }}
+            data={{ video, images, name, description, price }}
             absPath={absPath}
           />
         </Route>

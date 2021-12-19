@@ -5,7 +5,9 @@ import style from "./gameinfo.module.css";
 import Rating from "@mui/material/Rating";
 import Carousel from "./carousel";
 export default function GameInfo({ game, user }) {
+  const session = useSelector((state) => state.session);
   if (!game) return null;
+  if (game?.price === "None") game.price = null;
   return (
     <div className={style.container}>
       <h2>{game.name}</h2>
@@ -13,6 +15,11 @@ export default function GameInfo({ game, user }) {
         <Carousel game={game} />
         <span className={style.owner}>
           Created by: <strong>{user.username}</strong>
+          {+session.user.id === +game.owner_id && (
+            <button style={{ color: "red", margin: "0 0 0 40%" }}>
+              Delete Listing
+            </button>
+          )}
         </span>
         <img src={game.image_urls[0]} alt="" />
         <div className={style.info}>

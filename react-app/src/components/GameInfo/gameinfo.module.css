@@ -6,7 +6,7 @@
 .carousel {
   grid-row: span 2;
   position: relative;
-  height: 100%;
+  height: max-content;
 }
 .carousel > span {
   position: absolute;
@@ -56,6 +56,8 @@
 .owner {
   align-self: center;
   font-size: 1.4em;
+  display: flex;
+  align-items: center;
 }
 
 .buttons {
