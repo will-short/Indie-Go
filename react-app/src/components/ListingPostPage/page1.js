@@ -46,7 +46,10 @@ export default function Page1({ absPath }) {
           name="number"
           value={price}
           placeholder="0.00"
-          onChange={(e) => setPrice(e.target.value)}
+          onChange={(e) => {
+            setPrice(e.target.value);
+            console.log(price);
+          }}
         ></input>
       </label>
       <Link

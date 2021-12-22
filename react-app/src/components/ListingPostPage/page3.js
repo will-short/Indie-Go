@@ -4,7 +4,7 @@ import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./listingpostpage.module.css";
 import GameInfo from "../GameInfo";
-import { postListing } from "../../store/listings";
+import { postListing, editListing } from "../../store/listings";
 import { useListing } from "../../context/ListingContext";
 
 export default function Page3({ absPath, listingId }) {
@@ -12,7 +12,6 @@ export default function Page3({ absPath, listingId }) {
   const history = useHistory();
   const session = useSelector((state) => state.session);
   const listing = useSelector((state) => state.listings?.[listingId]);
-  const [new_urls, setNew_urls] = useState();
   let {
     name,
     setName,
@@ -29,13 +28,13 @@ export default function Page3({ absPath, listingId }) {
   } = useListing();
   useEffect(() => {
     if (listingId && listing) {
-      !name && setName(listing.name);
-      !description && setDescription(listing.description);
-      !price && listing.price && setPrice(listing.price);
-      !video_url && listing.video_url && setVideo_url(listing.video_url);
-      !image_urls.length && setImage_urls(listing.image_urls);
+      if (!name) setName(listing.name);
+      if (!description) setDescription(listing.description);
+      if (!price) setPrice(listing.price);
+      setVideo_url(listing.video_url);
+      if (!image_urls.length) setImage_urls([...listing.image_urls]);
     }
-  }, []);
+  }, [listingId]);
 
   if (!listing?.image_urls?.length) {
     if (!name || !description || images.length < 2)
@@ -61,17 +60,25 @@ export default function Page3({ absPath, listingId }) {
     " ";
   let game = {
     video_url,
-    image_urls: new_urls || image_urls,
+    image_urls,
     name,
     description,
     created_at,
     price,
   };
-  console.log(video_url);
 
   function handleSubmit() {
-    console.log({ video, image_urls, images, name, description });
-    // dispatch(postListing(video, images, name, description));
+    if (!listing) {
+      dispatch(postListing(video, images, name, price, description));
+    } else {
+      images = images.map((el, i) => {
+        if (!el && image_urls[i]) {
+          return (el = image_urls[i]);
+        }
+        return el;
+      });
+      dispatch(editListing(video, images, name, description, price, listingId));
+    }
     history.push(`/users/${session.user.id}`);
   }
   return (

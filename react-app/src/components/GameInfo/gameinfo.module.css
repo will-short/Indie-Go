@@ -28,6 +28,9 @@
 .carousel > span:last-of-type {
   right: 0;
 }
+.carousel > *:nth-child(2) {
+  display: block;
+}
 .container img {
   width: 100%;
   aspect-ratio: 16/9;

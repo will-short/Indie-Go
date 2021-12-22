@@ -25,6 +25,39 @@ def deleteLisiting(listingId):
     return listing.to_dict()
 
 
+@listing_routes.route('/<int:listingId>', methods=['PUT'])
+@login_required
+def editListing(listingId):
+    form = ListingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    listing = Listing.query.get(listingId)
+    video = form.data["video"]
+    if video:
+        video.filename = get_unique_filename(video.filename)
+        videoupload = upload_file_to_s3(video)
+        videoURL = videoupload["url"]
+        listing.video_url = videoURL
+
+    uploads = [form.data["image1"], form.data["image2"],
+               form.data["image3"], form.data["image4"], form.data["image5"]]
+    imageURLs = []
+    for upload in uploads:
+        if upload:
+            if type(upload) != str:
+                upload.filename = get_unique_filename(upload.filename)
+                imageupload = upload_file_to_s3(upload)
+                imageURLs.append(imageupload["url"])
+            else:
+                imageURLs.append(upload)
+    listing.image_urls = json.dumps(imageURLs)
+    listing.name = form.data["name"]
+    listing.description = form.data["description"]
+    listing.price = form.data["price"]
+
+    db.session.commit()
+    return listing.to_dict()
+
+
 @listing_routes.route('/', methods=['POST'])
 @login_required
 def postListing():
