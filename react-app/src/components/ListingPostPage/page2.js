@@ -9,9 +9,18 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import style from "./listingpostpage.module.css";
 import { useState } from "react";
+import { useListing } from "../../context/ListingContext";
 
-export default function Page1({ data, absPath }) {
-  let { video, setVideo, images, setImages } = data;
+export default function Page1({ absPath }) {
+  let {
+    video,
+    setVideo,
+    images,
+    setImages,
+    video_url,
+    setVideo_url,
+    image_urls,
+  } = useListing();
   let [linkToggle, setLinkToggle] = useState("");
   let [image1, setImgage1] = useState(images[0]);
   let [image2, setImgage2] = useState(images[1]);
@@ -19,23 +28,28 @@ export default function Page1({ data, absPath }) {
   let [image4, setImgage4] = useState(images[3]);
   let [image5, setImgage5] = useState(images[4]);
   useEffect(() => {
-    images.length <= 0 ? setLinkToggle("disabled") : setLinkToggle("");
-    setImages([image1, image2, image3, image4, image5].filter((el) => el));
+    if (image_urls?.length > 1) setLinkToggle("");
+    else images.length <= 0 ? setLinkToggle("disabled") : setLinkToggle("");
+    images[0] = image1;
+    images[1] = image2;
+    images[2] = image3;
+    images[3] = image4;
+    images[4] = image5;
+    setImages(images);
+    console.log(images);
   }, [image1, image2, image3, image4, image5]);
+
   useEffect(() => {
     let videoEl = document.querySelector("source");
-    if (video && videoEl) {
-      videoEl.src = URL.createObjectURL(video);
-      videoEl.parentElement.load();
+    if (video) {
+      setVideo_url(URL.createObjectURL(video));
+      videoEl?.parentElement?.load();
     }
   }, [video]);
-
   return (
     <div className={style.page2Container}>
       <div className={style.videoContainer}>
-        <video width="300" controls>
-          <source />
-        </video>
+        <video width="300" controls src={video_url}></video>
         <label htmlFor="video">
           {video ? "redo upload" : "Upload Trailer"}
           <input
@@ -51,7 +65,10 @@ export default function Page1({ data, absPath }) {
         </label>
       </div>
       <div className={style.imageUpload}>
-        <img src={image1 && URL.createObjectURL(image1)} alt="" />
+        <img
+          src={(image1 && URL.createObjectURL(image1)) || image_urls?.[0]}
+          alt=""
+        />
         <label htmlFor="upload1">
           Upload Header Image - Required
           <input
@@ -65,7 +82,10 @@ export default function Page1({ data, absPath }) {
         </label>
       </div>
       <div className={style.imageUpload}>
-        <img src={image2 && URL.createObjectURL(image2)} alt="" />
+        <img
+          src={(image2 && URL.createObjectURL(image2)) || image_urls?.[1]}
+          alt=""
+        />
         <label htmlFor="upload2">
           Upload Screen Shot Image - Required
           <input
@@ -79,7 +99,10 @@ export default function Page1({ data, absPath }) {
         </label>
       </div>
       <div className={style.imageUpload}>
-        <img src={image3 && URL?.createObjectURL(image3)} alt="" />
+        <img
+          src={(image3 && URL?.createObjectURL(image3)) || image_urls?.[2]}
+          alt=""
+        />
         <label htmlFor="upload3">
           Upload Screen Shot Image - Optional
           <input
@@ -93,7 +116,10 @@ export default function Page1({ data, absPath }) {
         </label>
       </div>
       <div className={style.imageUpload}>
-        <img src={image4 && URL?.createObjectURL(image4)} alt="" />
+        <img
+          src={(image4 && URL?.createObjectURL(image4)) || image_urls?.[3]}
+          alt=""
+        />
         <label htmlFor="upload4">
           Upload Screen Shot Image - Optional
           <input
@@ -107,7 +133,10 @@ export default function Page1({ data, absPath }) {
         </label>
       </div>
       <div className={style.imageUpload}>
-        <img src={image5 && URL?.createObjectURL(image5)} alt="" />
+        <img
+          src={(image5 && URL?.createObjectURL(image5)) || image_urls?.[4]}
+          alt=""
+        />
         <label htmlFor="upload5">
           Upload Screen Shot Image - Optional
           <input

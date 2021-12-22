@@ -7,8 +7,10 @@ import GameInfo from "../GameInfo";
 
 export default function ProfilePage() {
   const session = useSelector((state) => state.session);
+  const listings = useSelector((state) => state.listings);
   const [user, setUser] = useState({});
   const { userId } = useParams();
+
   useEffect(() => {
     if (!userId) {
       return;
@@ -18,7 +20,7 @@ export default function ProfilePage() {
       const user = await response.json();
       setUser(user);
     })();
-  }, [userId]);
+  }, [userId, listings]);
   return (
     <main className={profilepageStyle.main}>
       <User user={user} />

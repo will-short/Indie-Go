@@ -6,6 +6,16 @@
   row-gap: 2rem;
   overflow: hidden;
 }
+.edit > header > a > div {
+  border: 2px solid black !important;
+  color: black !important;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+.edit > header > span {
+  background-color: black !important;
+  background-position: 0 0 !important;
+}
 .header {
   display: flex;
   justify-content: center;

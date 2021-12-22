@@ -32,13 +32,15 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        self.listings.reverse()
+        listingInfo = [listing.to_dict()
+                       for listing in self.listings[::-1]]
+
         return {
             'id': self.id,
             'username': self.username,
             'email': self.email,
             'image_url': self.image_url,
-            'listings': [listing.to_dict() for listing in self.listings],
+            'listings': listingInfo,
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }

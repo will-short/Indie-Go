@@ -15,9 +15,9 @@ const update = (listings) => ({
   type: GET_ALL,
   listings,
 });
-const remove = (listings) => ({
-  type: GET_ALL,
-  listings,
+const remove = (listingId) => ({
+  type: DELETE,
+  listingId,
 });
 
 export const allListings = () => async (dispatch) => {
@@ -39,7 +39,6 @@ export const postListing =
     });
 
     const data = await res.json();
-    console.log(data);
     dispatch(post(data));
   };
 // };
@@ -48,11 +47,12 @@ export const postListing =
 //   const data = await res.json();
 //   dispatch(getAll(data));
 // };
-// export const allListings = () => async (dispatch) => {
-//   const res = await fetch("/api/listings");
-//   const data = await res.json();
-//   dispatch(getAll(data));
-// };
+export const deleteListing = (listingId) => async (dispatch) => {
+  const res = await fetch(`/api/listings/${listingId}`, { method: "DELETE" });
+  const data = await res.json();
+  dispatch(remove(listingId));
+  return data;
+};
 
 export default function reducer(state = {}, action) {
   switch (action.type) {
@@ -60,6 +60,9 @@ export default function reducer(state = {}, action) {
       return { ...state, ...action.listings };
     case POST:
       return { ...state, [action.listing.id]: action.listing };
+    case DELETE:
+      delete state[action.listingId];
+      return { ...state };
     default:
       return state;
   }

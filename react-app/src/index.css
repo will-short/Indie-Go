@@ -117,18 +117,18 @@ a {
 .secondary-link,
 .secondary-button {
   font-size: 1rem;
-  background-color: var(--primary);
+  background-color: var(--primary) !important;
   width: fit-content;
-  padding: 1ch 2ch;
-  border-radius: 2rem;
+  padding: 1ch 2ch !important;
+  border-radius: 2rem !important;
   justify-self: flex-end;
-  border: none;
+  border: none !important;
   cursor: pointer;
   height: max-content;
 }
 .secondary-link,
 .secondary-button {
-  background-color: var(--secondary);
+  background-color: var(--secondary) !important;
 }
 ::-webkit-scrollbar {
   background: none !important;
@@ -145,6 +145,15 @@ a#forward {
   margin-right: 10%;
 }
 .disabled {
-  background-color: lightgray;
-  pointer-events: none;
+  background-color: lightgray !important;
+  pointer-events: none !important;
+}
+button.none {
+  font-size: 1.5rem;
+  background: none;
+  width: fit-content;
+  justify-self: flex-end;
+  border: none;
+  cursor: pointer;
+  height: max-content;
 }

@@ -10,11 +10,19 @@ listing_routes = Blueprint('listings', __name__)
 
 
 @listing_routes.route('/')
-# @login_required
 def listings():
     listings = Listing.query.all()
 
     return {"listings": {listing.listingId(): listing.to_dict() for listing in listings}}
+
+
+@listing_routes.route('/<int:listingId>', methods=['DELETE'])
+@login_required
+def deleteLisiting(listingId):
+    listing = Listing.query.get(listingId)
+    db.session.delete(listing)
+    db.session.commit()
+    return listing.to_dict()
 
 
 @listing_routes.route('/', methods=['POST'])

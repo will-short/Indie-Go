@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./listingpostpage.module.css";
 import { useState } from "react";
 import { useRef } from "react";
+import { useListing } from "../../context/ListingContext";
 
-export default function Page1({ data, absPath }) {
-  let { name, setName, description, setDescription, price, setPrice } = data;
+export default function Page1({ absPath }) {
+  let { name, setName, description, setDescription, price, setPrice } =
+    useListing();
 
   let [linkToggle, setLinkToggle] = useState("");
   useEffect(() => {
