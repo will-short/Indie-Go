@@ -1,5 +1,14 @@
 .main {
   display: grid;
-  padding: 1rem 20%;
+  padding: 0 19.5%;
+  grid-template-columns: 100%;
+  margin: 1rem 0.5%;
   grid-template-rows: 14rem 1fr;
+  row-gap: 2rem;
+  overflow: auto;
+}
+.gameList {
+  height: 100%;
+  display: grid;
+  row-gap: 1rem;
 }

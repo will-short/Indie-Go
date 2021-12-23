@@ -1,8 +1,5 @@
 import React from "react";
-import { Link, NavLink, Route, Switch } from "react-router-dom";
 import style from "./modals.module.css";
-import SearchBar from "../SearchBar";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 import Login from "./login";
 import Signup from "./signup";

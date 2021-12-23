@@ -9,7 +9,7 @@ import dropDownStyle from "./dropDownStyle.module.css";
 import { useEffect } from "react";
 
 export default function UserControls({ setModal }) {
-  const [toggleUserInfo, setToggleUserInfo] = useState(true);
+  const [toggleUserInfo, setToggleUserInfo] = useState(false);
   const session = useSelector((state) => state.session);
 
   function handleBlur(e) {
@@ -53,7 +53,7 @@ export default function UserControls({ setModal }) {
         <button
           className={style.user}
           onClick={() => setToggleUserInfo(!toggleUserInfo)}
-          // onBlur={handleBlur}
+          onBlur={handleBlur}
         >
           <img src={session?.user.image_url} alt="" />
           <span className="material-icons">arrow_drop_down</span>

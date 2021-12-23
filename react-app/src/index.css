@@ -111,3 +111,49 @@ a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
+
+.primary-button,
+.primary-link,
+.secondary-link,
+.secondary-button {
+  font-size: 1rem;
+  background-color: var(--primary) !important;
+  width: fit-content;
+  padding: 1ch 2ch !important;
+  border-radius: 2rem !important;
+  justify-self: flex-end;
+  border: none !important;
+  cursor: pointer;
+  height: max-content;
+}
+.secondary-link,
+.secondary-button {
+  background-color: var(--secondary) !important;
+}
+::-webkit-scrollbar {
+  background: none !important;
+  border-radius: 10px;
+  margin: 5px 5px;
+  width: 14px;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+a#forward {
+  margin-top: 10px;
+  margin-right: 10%;
+}
+.disabled {
+  background-color: lightgray !important;
+  pointer-events: none !important;
+}
+button.none {
+  font-size: 1.5rem;
+  background: none;
+  width: fit-content;
+  justify-self: flex-end;
+  border: none;
+  cursor: pointer;
+  height: max-content;
+}

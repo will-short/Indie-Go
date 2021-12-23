@@ -18,11 +18,3 @@
   border-radius: 50%;
   grid-row: span 4;
 }
-.container a {
-  font-size: 1rem;
-  background-color: var(--primary);
-  width: fit-content;
-  padding: 1ch 2ch;
-  border-radius: 2rem;
-  justify-self: flex-end;
-}

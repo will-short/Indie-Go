@@ -18,6 +18,8 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(
         db.DateTime(), onupdate=func.now(), default=func.now())
 
+    listings = db.relationship('Listing', back_populates='users')
+
     @property
     def password(self):
         return self.hashed_password
@@ -30,11 +32,15 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        listingInfo = [listing.to_dict()
+                       for listing in self.listings[::-1]]
+
         return {
             'id': self.id,
             'username': self.username,
             'email': self.email,
             'image_url': self.image_url,
+            'listings': listingInfo,
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }

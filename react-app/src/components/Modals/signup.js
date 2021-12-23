@@ -20,7 +20,6 @@ export default function Signup({ setModal }) {
   };
   useEffect(() => {
     let imageEl = document.querySelector(".modals_imageUpload__3jm60 > img");
-    console.log(image);
     if (image && imageEl) imageEl.src = URL.createObjectURL(image);
   }, [image]);
 

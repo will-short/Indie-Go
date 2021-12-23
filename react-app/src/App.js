@@ -8,7 +8,8 @@ import UsersList from "./components/UserList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import ProfilePage from "./components/ProfilePage";
-
+import ListingPostPage from "./components/ListingPostPage";
+import { allListings } from "./store/listings";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      setLoaded(true);
+      await dispatch(allListings());
+      await setLoaded(true);
     })();
   }, [dispatch]);
 
@@ -39,6 +41,14 @@ function App() {
         </Route>
         <Route path="/users/:userId" exact={true}>
           <ProfilePage />
+        </Route>
+        <Route
+          path={[
+            "/users/:userId/listings/new/:id",
+            "/listings/:listingId/edit/:id",
+          ]}
+        >
+          <ListingPostPage />
         </Route>
         <Route path="/" exact={true}>
           <h1>My Home Page</h1>
