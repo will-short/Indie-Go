@@ -15,3 +15,4 @@ class ListingForm(FlaskForm):
     image3 = FileField("image3")
     image4 = FileField("image4")
     image5 = FileField("image5")
+    tags = StringField("tags")

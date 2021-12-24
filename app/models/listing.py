@@ -19,6 +19,8 @@ class Listing(db.Model):
         db.DateTime(), onupdate=func.now(), default=func.now())
 
     users = db.relationship('User', back_populates='listings')
+    tags = db.relationship(
+        'Tag', back_populates='listings', cascade="all, delete")
 
     def owner(self):
         return self.users.to_dict()
@@ -35,6 +37,7 @@ class Listing(db.Model):
             'description': self.description,
             "price": str(self.price),
             'owner_id': self.owner_id,
+            'tags': self.tags[0].to_list() if self.tags else [],
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }

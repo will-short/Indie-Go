@@ -63,7 +63,12 @@ export default function GameInfo({ game, user }) {
             </span>
           </div>
           <div className={style.tags}>
-            <span>tags:</span>
+            tags:
+            {game?.tags?.map((tag, i) => (
+              <span key={i} className={"tags " + tag}>
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
         <div className={style.buttons}>

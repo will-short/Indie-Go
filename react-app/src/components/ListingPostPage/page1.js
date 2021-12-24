@@ -7,8 +7,32 @@ import { useRef } from "react";
 import { useListing } from "../../context/ListingContext";
 
 export default function Page1({ absPath }) {
-  let { name, setName, description, setDescription, price, setPrice } =
-    useListing();
+  let {
+    name,
+    setName,
+    description,
+    setDescription,
+    price,
+    setPrice,
+    tags,
+    setTags,
+  } = useListing();
+  const [tagOptions, setTagOptions] = useState(
+    [
+      "action",
+      "adventure",
+      "rpg",
+      "mmo",
+      "casual",
+      "sports",
+      "simulation",
+      "strategy",
+      "racing",
+      "rts",
+      "horror",
+      "platformer",
+    ].filter((tag) => !tags.includes(tag))
+  );
 
   let [linkToggle, setLinkToggle] = useState("");
   useEffect(() => {
@@ -40,18 +64,59 @@ export default function Page1({ absPath }) {
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
       </label>
-      <label htmlFor="price">
-        Price - (if blank game will be listed for free)
-        <input
-          name="number"
-          value={price}
-          placeholder="0.00"
-          onChange={(e) => {
-            setPrice(e.target.value);
-            console.log(price);
-          }}
-        ></input>
-      </label>
+      <div className={style.bottomRow}>
+        <div className={style.tags}>
+          Choose your tags (optional):
+          {tagOptions.map((tag, i) => (
+            <span
+              key={i}
+              className={"tags " + tag}
+              onClick={(e) => {
+                let removed = tagOptions.splice(
+                  tagOptions.indexOf(e.target.innerText),
+                  1
+                )[0];
+                setTags([...tags, removed]);
+                setTagOptions([...tagOptions]);
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className={style.tags}>
+          <span>game tags:</span>
+          {tags?.map((tag, i) => (
+            <span
+              key={i}
+              className={"tags " + tag}
+              onClick={(e) => {
+                let removed = tags.splice(
+                  tags.indexOf(e.target.innerText),
+                  1
+                )[0];
+                setTagOptions([...tagOptions, removed]);
+                setTags([...tags]);
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <label htmlFor="price" className={style.priceLabel}>
+          Price - (if blank game will be listed for free)
+          <input
+            name="price"
+            type="number"
+            value={price}
+            placeholder="0.00"
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          ></input>
+        </label>
+      </div>
+
       <Link
         className={`primary-link ${linkToggle}`}
         id="forward"

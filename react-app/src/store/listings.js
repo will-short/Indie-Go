@@ -26,7 +26,7 @@ export const allListings = () => async (dispatch) => {
   dispatch(getAll(data.listings));
 };
 export const postListing =
-  (video, images, name, description, price) => async (dispatch) => {
+  (video, images, name, description, price, tags) => async (dispatch) => {
     const formData = new FormData();
     if (video) formData.append("video", video);
     images.map((image, i) =>
@@ -34,6 +34,7 @@ export const postListing =
     );
     formData.append("name", name);
     formData.append("description", description);
+    formData.append("tags", JSON.stringify(tags));
     if (price) formData.append("price", price);
     const res = await fetch("/api/listings/", {
       method: "POST",
@@ -44,7 +45,7 @@ export const postListing =
     dispatch(post(data));
   };
 export const editListing =
-  (video, images, name, description, price, id) => async (dispatch) => {
+  (video, images, name, description, price, id, tags) => async (dispatch) => {
     const formData = new FormData();
     if (video) formData.append("video", video);
     images.map((image, i) =>
@@ -53,7 +54,7 @@ export const editListing =
     formData.append("name", name);
     formData.append("description", description);
     if (price) formData.append("price", price);
-    console.log({ id });
+    formData.append("tags", JSON.stringify(tags));
     const res = await fetch(`/api/listings/${id}`, {
       method: "PUT",
       body: formData,

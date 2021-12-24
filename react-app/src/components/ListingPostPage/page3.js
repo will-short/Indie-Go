@@ -25,6 +25,8 @@ export default function Page3({ absPath, listingId }) {
     video_url,
     video,
     images,
+    tags,
+    setTags,
   } = useListing();
   useEffect(() => {
     if (listingId && listing) {
@@ -33,6 +35,7 @@ export default function Page3({ absPath, listingId }) {
       if (!price) setPrice(listing.price);
       setVideo_url(listing.video_url);
       if (!image_urls.length) setImage_urls([...listing.image_urls]);
+      if (!tags.length) setTags([...listing.tags]);
     }
   }, [listingId]);
 
@@ -65,19 +68,23 @@ export default function Page3({ absPath, listingId }) {
     description,
     created_at,
     price,
+    tags,
   };
 
   function handleSubmit() {
-    if (!listing) {
-      dispatch(postListing(video, images, name, price, description));
+    if (!listingId || !listing) {
+      dispatch(postListing(video, images, name, price, description, tags));
     } else {
+      console.log(tags);
       images = images.map((el, i) => {
         if (!el && image_urls[i]) {
           return (el = image_urls[i]);
         }
         return el;
       });
-      dispatch(editListing(video, images, name, description, price, listingId));
+      dispatch(
+        editListing(video, images, name, description, price, listingId, tags)
+      );
     }
     history.push(`/users/${session.user.id}`);
   }
