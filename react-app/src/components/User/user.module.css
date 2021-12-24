@@ -10,11 +10,16 @@
   row-gap: 5px;
   font-size: 1.5em;
 }
-.container span:first-of-type {
+.container > span:first-of-type {
   margin-top: 20px;
 }
 .container > img {
   height: 75%;
   border-radius: 50%;
   grid-row: span 4;
+}
+div.tags {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }

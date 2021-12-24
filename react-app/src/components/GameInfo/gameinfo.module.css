@@ -54,13 +54,16 @@
   justify-self: start;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 5px;
 }
+
 .owner {
   align-self: center;
   font-size: 1.4em;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .buttons {

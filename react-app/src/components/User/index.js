@@ -8,6 +8,9 @@ function User({ user }) {
   if (!user) {
     return null;
   }
+  let listings = user?.listings;
+  let tags = new Set(listings?.flatMap((listing) => listing.tags));
+  console.log(tags);
   return (
     <div className={style.container}>
       <img src={user?.image_url} alt="" />
@@ -18,7 +21,13 @@ function User({ user }) {
         Games listed: <strong>5</strong>
       </span>
       <span>tags:</span>
-      <div>Tags go here</div>
+      <div className={style.tags}>
+        {[...tags].map((tag, i) => (
+          <span key={i} className={"tags " + tag}>
+            {tag}
+          </span>
+        ))}
+      </div>
       {session?.user?.id === +user?.id && (
         <Link className="primary-link" to={`/users/${user.id}/listings/new/1`}>
           New Listing

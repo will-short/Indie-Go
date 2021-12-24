@@ -109,7 +109,7 @@ header.header > span {
   display: grid;
   width: 70%;
   grid-template-columns: 100%;
-  grid-template-rows: 5ch 25ch max-content;
+  grid-template-rows: 5ch 25ch auto;
   row-gap: 2rem;
   padding: 5rem 0;
   justify-self: center;
@@ -170,4 +170,31 @@ header.header > span {
 .page3Container {
   display: grid;
   grid-template-rows: auto 1fr;
+}
+div.bottomRow {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 50% 50%;
+  grid-auto-flow: column;
+  align-items: flex-start;
+  width: 80%;
+}
+div.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  cursor: pointer;
+}
+div.bottomRow > .priceLabel {
+  grid-row: span 2;
+}
+div.bottomRow input {
+  height: 4ch;
+}
+select {
+  background-color: #17191c;
+  color: white;
+}
+select > option {
+  text-align: center;
 }

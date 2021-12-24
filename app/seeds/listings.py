@@ -1,4 +1,4 @@
-from app.models import db, Listing
+from app.models import db, Listing, Tag
 from faker import Faker
 import json
 fake = Faker()
@@ -11,7 +11,7 @@ def seed_listings():
         contents = f.readlines()
 
     ind = 0
-    # remove any adult games from game list from steam
+    # remove any duplicate games from game list from steam
 
     formattedGameData = list(set(contents))
 
@@ -19,19 +19,45 @@ def seed_listings():
         ind += 1
         gameData = json.loads(s)
 
-        try:
-            game = Listing(
-                name=gameData["name"],
-                description=gameData["description"][:499],
-                image_urls=str(gameData["image_urls"]),
-                video_url=gameData["video_url"],
-                price=gameData["price"][1:],
-                owner_id=(1 + ind//8)
-            )
-            db.session.add(game)
-            db.session.commit()
-        except Exception as e:
-            print(e)
+        game = Listing(
+            name=gameData["name"],
+            description=gameData["description"][:499],
+            image_urls=str(gameData["image_urls"]),
+            video_url=gameData["video_url"],
+            price=gameData["price"][1:],
+            owner_id=(1 + ind//8)
+        )
+        db.session.add(game)
+        if gameData["genres"]:
+            formatted = [str.lower() for str in gameData["genres"]]
+            action = True if "action" in formatted else None
+            adventure = True if "adventure" in formatted else None
+            rpg = True if "rpg" in formatted else None
+            mmo = True if "mmo" in formatted or "massively multiplayer" in formatted else None
+            casual = True if "casual" in formatted else None
+            sports = True if "sports" in formatted else None
+            simulation = True if "simulation" in formatted else None
+            strategy = True if "strategy" in formatted else None
+            racing = True if "racing" in formatted else None
+            rts = True if "rts" in formatted else None
+            horror = True if "horror" in formatted or "violent" in formatted else None
+            platformer = True if "platformer" in formatted else None
+            tags = Tag(
+                action=action,
+                adventure=adventure,
+                rpg=rpg,
+                mmo=mmo,
+                casual=casual,
+                sports=sports,
+                simulation=simulation,
+                strategy=strategy,
+                racing=racing,
+                rts=rts,
+                horror=horror,
+                platformer=platformer,
+                listing_id=ind)
+            db.session.add(tags)
+        db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE the users table.

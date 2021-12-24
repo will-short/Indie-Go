@@ -157,3 +157,48 @@ button.none {
   cursor: pointer;
   height: max-content;
 }
+
+span.tags {
+  color: white;
+  padding: 0.2ch 1ch;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1rem;
+}
+span.tags.casual {
+  background-color: #c724b1;
+}
+span.tags.simulation {
+  background-color: #4d4dff;
+}
+
+span.tags.action {
+  background-color: #ffad00;
+}
+span.tags.strategy {
+  background-color: #d22730;
+}
+span.tags.adventure {
+  background-color: #db3eb1;
+}
+span.tags.rpg {
+  background-color: #44d62c;
+}
+span.tags.sports {
+  background-color: #00feca;
+}
+span.tags.racing {
+  background-color: #ff9472;
+}
+span.tags.mmo {
+  background-color: #00207f;
+}
+span.tags.rts {
+  background-color: #f85125;
+}
+span.tags.horror {
+  background-color: #ff006a;
+}
+span.tags.platformer {
+  background-color: #7fff00;
+}
