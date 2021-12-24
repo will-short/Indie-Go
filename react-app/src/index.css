@@ -161,8 +161,9 @@ button.none {
 span.tags {
   color: white;
   padding: 0.2ch 1ch;
-  border-radius: 1em;
+  border-radius: 1rem;
   text-align: center;
+  font-size: 1rem;
 }
 span.tags.casual {
   background-color: #c724b1;
