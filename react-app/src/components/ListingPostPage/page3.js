@@ -72,7 +72,7 @@ export default function Page3({ absPath, listingId }) {
   };
 
   function handleSubmit() {
-    if (!listingId || !listing) {
+    if (!listing) {
       dispatch(postListing(video, images, name, description, price, tags));
     } else if (
       name !== listing.name ||

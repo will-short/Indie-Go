@@ -1,0 +1,50 @@
+.main > header {
+  background-color: #36383a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+}
+.main > header > div {
+  display: grid;
+  justify-items: center;
+}
+.main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.lower {
+  display: grid;
+  grid-auto-flow: column;
+  width: 90%;
+  gap: 2%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  align-self: center;
+  justify-self: center;
+}
+.lower > h1 {
+  grid-column: span 3;
+}
+.content {
+  position: relative;
+}
+.content > img {
+  width: 100%;
+}
+.content > h2 {
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+}
+.lower a {
+  transition: visibility 0.3s linear;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

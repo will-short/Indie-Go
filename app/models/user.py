@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
         db.DateTime(), onupdate=func.now(), default=func.now())
 
     listings = db.relationship('Listing', back_populates='users')
+    reviews = db.relationship('Review', back_populates='users')
 
     @property
     def password(self):

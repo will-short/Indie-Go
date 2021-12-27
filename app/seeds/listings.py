@@ -1,4 +1,5 @@
-from app.models import db, Listing, Tag
+import random
+from app.models import db, Listing, Tag, Review
 from faker import Faker
 import json
 fake = Faker()
@@ -18,14 +19,14 @@ def seed_listings():
     for s in formattedGameData:
         ind += 1
         gameData = json.loads(s)
-
+        owner_id = (1 + ind//8)
         game = Listing(
             name=gameData["name"],
             description=gameData["description"][:499],
             image_urls=str(gameData["image_urls"]),
             video_url=gameData["video_url"],
             price=gameData["price"][1:],
-            owner_id=(1 + ind//8)
+            owner_id=owner_id
         )
         db.session.add(game)
         if gameData["genres"]:
@@ -57,6 +58,16 @@ def seed_listings():
                 platformer=platformer,
                 listing_id=ind)
             db.session.add(tags)
+            for z in range(random.randint(3, 9)):
+                review = Review(
+                    content=fake.sentence(nb_words=10),
+                    rating=random.randint(1, 5),
+                    listing_id=ind,
+                    owner_id=random.randint(1, 100),
+                    likes=random.randint(1, 50),
+                    dislikes=random.randint(1, 50)
+                )
+                db.session.add(review)
         db.session.commit()
 
 

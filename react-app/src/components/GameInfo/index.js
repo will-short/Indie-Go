@@ -11,6 +11,11 @@ export default function GameInfo({ game, user }) {
   const [modal, setModal] = useState(false);
   if (!game) return null;
   if (game?.price === "None") game.price = null;
+  let avgRating = game?.reviews
+    ? game.reviews.reduce((acc, { rating }) => acc + +rating, 0) /
+      game.reviews.length
+    : 0;
+
   return (
     <div className={style.container}>
       <h2>{game.name}</h2>
@@ -43,12 +48,12 @@ export default function GameInfo({ game, user }) {
           <div className={style.rating}>
             <Rating
               name="text-feedback"
-              value={4}
+              value={avgRating}
               readOnly
               precision={0.5}
               style={{ color: "black" }}
             />
-            <span>(10000)</span>
+            <span>({game?.reviews?.length || 0})</span>
           </div>
           <div className={style.release}>
             <span>RELEASE DATE:</span>
