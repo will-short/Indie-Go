@@ -22,7 +22,7 @@ export default function GameCard({ game }) {
       <div className={style.gameCard}>
         <img src={game?.image_urls?.[0]} alt="" />
         <h3>{game?.name}</h3>
-        <span>Created by:</span>
+        <span>Created by: {game?.owner?.username}</span>
         <div className={style.rating}>
           <Rating
             name="text-feedback"
@@ -34,6 +34,11 @@ export default function GameCard({ game }) {
           <span>({game?.reviews?.length || 0})</span>
         </div>
         {bestReview && <p>"{bestReview?.content}"</p>}
+        {bestReview && (
+          <span style={{ "margin-left": "1rem" }}>
+            - {bestReview?.owner?.username}
+          </span>
+        )}
       </div>
     </Link>
   );

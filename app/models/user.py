@@ -32,6 +32,13 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def info(self):
+        return{
+            'username': self.username,
+            'email': self.email,
+            'image_url': self.image_url
+        }
+
     def to_dict(self):
         listingInfo = [listing.to_dict()
                        for listing in self.listings[::-1]]

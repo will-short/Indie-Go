@@ -9,7 +9,6 @@ export default function SearchBar() {
   function searchFunc(e) {
     e.preventDefault();
     history.push(`/listings?name=${query}`);
-    console.log("~!~~!~~!!~!~~!~!!~~!");
   }
   return (
     <div className={style.container}>

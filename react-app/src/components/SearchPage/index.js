@@ -13,16 +13,15 @@ export default function HomePage() {
   if (!listings) return null;
   let searchListings = [];
   if (tags) {
-    searchListings = Object.values(listings).filter((listing) =>
-      listing?.tags?.includes(tags)
-    );
+    searchListings = Object.values(listings)
+      .filter((listing) => listing?.tags?.includes(tags))
+      .slice(0, 50);
   }
   if (name) {
-    searchListings = Object.values(listings).filter((listing) =>
-      listing?.name.toLowerCase().includes(name)
-    );
+    searchListings = Object.values(listings)
+      .filter((listing) => listing?.name.toLowerCase().includes(name))
+      .slice(0, 50);
   }
-  console.log(name);
 
   return (
     <main className={style.main}>

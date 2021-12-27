@@ -1,4 +1,4 @@
-const GET_ALL = "listings/GET_ALL";
+const GET_ALL = "GET_ALL";
 const POST = "listings/POST";
 const UPDATE = "listings/UPDATE";
 const DELETE = "listings/DELETE";
