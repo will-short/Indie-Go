@@ -28,12 +28,13 @@ export default function Page3({ absPath, listingId }) {
     tags,
     setTags,
   } = useListing();
+
   useEffect(() => {
     if (listingId && listing) {
       if (!name) setName(listing.name);
       if (!description) setDescription(listing.description);
       if (!price) setPrice(listing.price);
-      setVideo_url(listing.video_url);
+      if (!video) setVideo_url(listing.video_url);
       if (!image_urls.length) setImage_urls([...listing.image_urls]);
       if (!tags.length) setTags([...listing.tags]);
     }
@@ -51,8 +52,7 @@ export default function Page3({ absPath, listingId }) {
     if (images[3]) image_urls[3] = URL.createObjectURL(images[3]);
     if (images[4]) image_urls[4] = URL.createObjectURL(images[4]);
   }
-
-  if (!video_url && video) video_url = URL.createObjectURL(video);
+  if (video) video_url = URL.createObjectURL(video);
   let today = new Date();
   let created_at =
     parseInt(today.getMonth() + 1) +
@@ -73,15 +73,28 @@ export default function Page3({ absPath, listingId }) {
 
   function handleSubmit() {
     if (!listingId || !listing) {
-      dispatch(postListing(video, images, name, price, description, tags));
-    } else {
-      console.log(tags);
+      dispatch(postListing(video, images, name, description, price, tags));
+    } else if (
+      name !== listing.name ||
+      description !== listing.description ||
+      JSON.stringify(tags) !== JSON.stringify(listing.tags) ||
+      video ||
+      images.length
+    ) {
+      console.log(
+        name !== listing.name,
+        description !== listing.description,
+        tags !== listing.tags,
+        video,
+        images.length
+      );
       images = images.map((el, i) => {
         if (!el && image_urls[i]) {
           return (el = image_urls[i]);
         }
         return el;
       });
+
       dispatch(
         editListing(video, images, name, description, price, listingId, tags)
       );

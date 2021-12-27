@@ -22,7 +22,7 @@ export default function GameInfo({ game, user }) {
             <>
               <button
                 className="none"
-                style={{ color: "red", margin: "0 0 0 40%" }}
+                style={{ color: "red", margin: "0 0 0 auto" }}
                 onClick={() => setModal(true)}
               >
                 Delete Listing

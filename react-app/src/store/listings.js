@@ -21,7 +21,7 @@ const remove = (listingId) => ({
 });
 
 export const allListings = () => async (dispatch) => {
-  const res = await fetch("/api/listings");
+  const res = await fetch("/api/listings/");
   const data = await res.json();
   dispatch(getAll(data.listings));
 };
@@ -55,7 +55,7 @@ export const editListing =
     formData.append("description", description);
     if (price) formData.append("price", price);
     formData.append("tags", JSON.stringify(tags));
-    const res = await fetch(`/api/listings/${id}`, {
+    const res = await fetch(`/api/listings/${id}/`, {
       method: "PUT",
       body: formData,
     });
@@ -63,7 +63,7 @@ export const editListing =
     dispatch(update(data));
   };
 export const deleteListing = (listingId) => async (dispatch) => {
-  const res = await fetch(`/api/listings/${listingId}`, { method: "DELETE" });
+  const res = await fetch(`/api/listings/${listingId}/`, { method: "DELETE" });
   const data = await res.json();
   dispatch(remove(listingId));
   return data;

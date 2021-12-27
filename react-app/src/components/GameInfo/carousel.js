@@ -20,7 +20,7 @@ export default function Carousel({ game }) {
     });
   }, [carouselPos]);
 
-  if (carouselData.length === 1)
+  if (carouselData.length === 1 && !game?.video_url)
     return (
       <div className={style.carousel}>
         <img src={carouselData[0]} alt="" style={{ display: "block" }} />

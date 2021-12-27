@@ -110,7 +110,7 @@ header.header > span {
   width: 70%;
   grid-template-columns: 100%;
   grid-template-rows: 5ch 25ch auto;
-  row-gap: 2rem;
+  row-gap: 1.5rem;
   padding: 5rem 0;
   justify-self: center;
   justify-items: center;
@@ -124,7 +124,7 @@ header.header > span {
 .page1Container textarea {
   background-color: #17191c;
   width: 100%;
-  height: 100%;
+  height: 80%;
   color: white !important;
 }
 .page1Container textarea {
@@ -173,8 +173,9 @@ header.header > span {
 }
 div.bottomRow {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   grid-template-columns: 50% 50%;
+  row-gap: 0.5rem;
   grid-auto-flow: column;
   align-items: flex-start;
   width: 80%;
