@@ -12,6 +12,7 @@ import ListingPostPage from "./components/ListingPostPage";
 import { allListings } from "./store/listings";
 import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
+import GamePage from "./components/GamePage";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -51,6 +52,9 @@ function App() {
           ]}
         >
           <ListingPostPage />
+        </Route>
+        <Route path="/listings/:listingId">
+          <GamePage />
         </Route>
         <Route path="/listings">
           <SearchPage />

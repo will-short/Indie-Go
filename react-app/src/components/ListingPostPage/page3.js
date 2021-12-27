@@ -103,7 +103,7 @@ export default function Page3({ absPath, listingId }) {
   }
   return (
     <div className={style.page3Container}>
-      <GameInfo game={game} user={session.user} />
+      <GameInfo game={game} />
       <button
         onClick={handleSubmit}
         className={`${style.submit} primary-button`}

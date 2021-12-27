@@ -40,11 +40,3 @@
 .lower a {
   transition: visibility 0.3s linear;
 }
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}

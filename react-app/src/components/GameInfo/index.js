@@ -22,7 +22,7 @@ export default function GameInfo({ game, user }) {
       <div className={style.gameInfo}>
         <Carousel game={game} />
         <span className={style.owner}>
-          Created by: <strong>{user?.username}</strong>
+          Created by: <strong>{game?.owner?.username}</strong>
           {+session?.user?.id === +game.owner_id && (
             <>
               <button
@@ -42,7 +42,15 @@ export default function GameInfo({ game, user }) {
             </>
           )}
         </span>
-        <img src={game.image_urls[0]} alt="" />
+        {user ? (
+          <Link className={style.gameView} to={`/listings/${game?.id}`}>
+            <img src={game.image_urls[0]} alt="" />
+            <div className={style.overLay}>Click to View Game</div>
+          </Link>
+        ) : (
+          <img src={game.image_urls[0]} alt="" />
+        )}
+
         <div className={style.info}>
           <p>{game.description}</p>
           <div className={style.rating}>
@@ -77,8 +85,12 @@ export default function GameInfo({ game, user }) {
           </div>
         </div>
         <div className={style.buttons}>
-          <button className="primary-button">Add to cart</button>
-          <button className="secondary-button">Add review</button>
+          {session?.user && (
+            <button className="primary-button">Add to cart</button>
+          )}
+          {session?.user && (
+            <button className="secondary-button">Add review</button>
+          )}
         </div>
       </div>
       {modal && <ConfirmDelete setModal={setModal} listingId={game?.id} />}

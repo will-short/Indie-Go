@@ -84,3 +84,21 @@
   grid-auto-flow: column;
   row-gap: 5px;
 }
+.gameView {
+  position: relative;
+}
+.gameView:hover > .overLay {
+  visibility: visible;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+  opacity: 1;
+}
+.overLay {
+  position: absolute;
+  visibility: hidden;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  opacity: 0;
+}
