@@ -5,17 +5,32 @@ import SearchBar from "../SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
-import { addReview } from "../../store/listings";
+import { addReview, deleteReview, editReview } from "../../store/listings";
 
-export default function Modal({ setModal, listingId }) {
+export default function Modal({
+  setModal,
+  listingId,
+  ratingInfo,
+  contentInfo,
+  reviewId,
+}) {
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(0);
-  const [content, setContent] = useState("");
+  const [rating, setRating] = useState(ratingInfo || 0);
+  const [content, setContent] = useState(contentInfo || "");
 
   function handleSubmit() {
-    dispatch(addReview({ rating, content, listing_id: listingId })).then(() =>
-      setModal(false)
-    );
+    if (reviewId) {
+      dispatch(
+        editReview({ rating, content, listing_id: listingId, reviewId })
+      ).then(() => setModal(false));
+    } else {
+      dispatch(addReview({ rating, content, listing_id: listingId })).then(() =>
+        setModal(false)
+      );
+    }
+  }
+  function handleDelete() {
+    dispatch(deleteReview({ listingId, reviewId })).then(() => setModal(false));
   }
   return (
     <div className={style.modalBackground} onClick={() => setModal(false)}>
@@ -34,7 +49,7 @@ export default function Modal({ setModal, listingId }) {
         </span>
         <div className={style.textWrapper}>
           <textarea
-            name=""
+            value={content}
             className={style.reviewContent}
             onChange={(e) => setContent(e.target.value)}
           />
@@ -45,16 +60,23 @@ export default function Modal({ setModal, listingId }) {
             }}
           >{`${content.length}/200`}</p>
         </div>
-        <button
-          className={
-            content.length < 1 || content.length > 200
-              ? "primary-button disabled"
-              : `primary-button`
-          }
-          onClick={handleSubmit}
-        >
-          Post Review
-        </button>
+        <div className={style.buttons}>
+          <button
+            className={
+              content.length < 1 || content.length > 200
+                ? "primary-button disabled"
+                : `primary-button`
+            }
+            onClick={handleSubmit}
+          >
+            {!contentInfo ? "Post Review" : "Edit Review"}
+          </button>
+          {contentInfo && (
+            <button className="primary-button delete" onClick={handleDelete}>
+              Delete Review
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

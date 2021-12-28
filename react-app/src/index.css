@@ -201,3 +201,7 @@ span.tags.horror {
 span.tags.platformer {
   background-color: #7fff00;
 }
+
+button.delete {
+  background-color: red !important;
+}

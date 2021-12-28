@@ -171,3 +171,8 @@
   width: 100%;
   height: 80%;
 }
+.reviewPost .buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}

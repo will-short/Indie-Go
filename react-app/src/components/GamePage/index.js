@@ -8,11 +8,14 @@ export default function GamePage() {
   const { listingId } = useParams();
   const listings = useSelector((state) => state.listings);
   const currentGame = listings[listingId];
+  let reviews = currentGame?.reviews;
+  reviews.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
   return (
     <main className={style.main}>
       <GameInfo game={currentGame} />
+      <h1>Reviews:</h1>
       <div className={style.reviewList}>
-        {currentGame?.reviews?.map((review) => (
+        {reviews?.map((review) => (
           <Review review={review} />
         ))}
       </div>

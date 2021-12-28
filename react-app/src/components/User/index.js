@@ -17,7 +17,8 @@ function User({ user }) {
         <strong>{user?.username}</strong>
       </span>
       <span>
-        Games listed: <strong>{listings?.length}</strong>
+        Games listed: <strong>{listings?.length}</strong>, Reviews posted:
+        <strong>{user?.reviews?.length}</strong>
       </span>
       <span>tags:</span>
       <div className={style.tags}>

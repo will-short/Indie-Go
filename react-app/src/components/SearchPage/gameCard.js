@@ -14,9 +14,7 @@ export default function GameCard({ game }) {
     Math,
     game.reviews.map((review) => review.likes - review.dislikes)
   );
-  let bestReview = game.reviews.find(
-    (review) => review.likes - review.dislikes === maxLikes
-  );
+  let bestReview = game.reviews[0];
   return (
     <Link to={`/listings/${game.id}`}>
       <div className={style.gameCard}>

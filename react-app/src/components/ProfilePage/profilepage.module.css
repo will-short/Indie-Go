@@ -12,3 +12,25 @@
   display: grid;
   row-gap: 1rem;
 }
+.swap {
+  display: flex;
+  justify-content: center;
+}
+.swap > button {
+  width: 50%;
+  background-color: var(--dark-background-color);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+}
+.swap > button:not(.inactive) {
+  pointer-events: none;
+}
+.inactive {
+  background-color: #1a1b1e !important;
+  cursor: pointer;
+}
+.reviewList {
+  display: grid;
+  gap: 1rem;
+}

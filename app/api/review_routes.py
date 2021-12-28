@@ -22,3 +22,25 @@ def postReview(listingId):
         db.session.add(review)
         db.session.commit()
         return review.to_dict()
+
+
+@review_routes.route('/<int:listingId>/reviews/<int:reviewId>/', methods=["PUT"])
+@login_required
+def editReview(listingId, reviewId):
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review.query.get(reviewId)
+        review.content = form.data["content"],
+        review.rating = form.data["rating"],
+        db.session.commit()
+        return review.to_dict()
+
+
+@review_routes.route('/<int:listingId>/reviews/<int:reviewId>/', methods=["DELETE"])
+@login_required
+def deleteReview(listingId, reviewId):
+    review = Review.query.get(reviewId)
+    db.session.delete(review)
+    db.session.commit()
+    return {"success": "true"}

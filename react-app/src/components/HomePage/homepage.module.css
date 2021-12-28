@@ -34,14 +34,14 @@
 
 .images {
   position: relative;
-  height: 550px;
+  height: 450px;
   display: flex;
   align-items: center;
   overflow-x: auto;
   gap: 20px;
 }
 .images a {
-  height: 500px;
+  height: 400px;
   aspect-ratio: 16/9;
 }
 .content {

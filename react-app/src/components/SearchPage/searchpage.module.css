@@ -14,7 +14,7 @@
 .gameCard {
   background-color: #36383a !important;
   padding-bottom: 10px;
-  height: 350px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   gap: 2px;

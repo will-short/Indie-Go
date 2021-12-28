@@ -30,6 +30,7 @@ class Review(db.Model):
             'content': self.content,
             'rating': str(self.rating),
             'listing_id': self.listing_id,
+            'listing_info': self.listings.listingInfo(),
             'owner_id': self.owner_id,
             'owner': self.users.info(),
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
