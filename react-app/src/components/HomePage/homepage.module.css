@@ -18,25 +18,33 @@
   grid-auto-flow: column;
   width: 90%;
   gap: 2%;
-  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
   align-self: center;
   justify-self: center;
 }
-.lower > h1 {
-  grid-column: span 3;
-}
-.content {
-  position: relative;
-}
+
 .content > img {
-  width: 100%;
+  height: 100%;
 }
 .content > h2 {
   position: absolute;
   left: 15px;
   bottom: 10px;
 }
-.lower a {
-  transition: visibility 0.3s linear;
+
+.images {
+  position: relative;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 20px;
+}
+.images a {
+  height: 500px;
+  aspect-ratio: 16/9;
+}
+.content {
+  height: 100%;
+  position: relative;
 }

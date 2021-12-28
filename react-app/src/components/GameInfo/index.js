@@ -5,24 +5,31 @@ import style from "./gameinfo.module.css";
 import Rating from "@mui/material/Rating";
 import Carousel from "./carousel";
 import ConfirmDelete from "../Modals/confirmdelete";
-
+import ReviewPost from "../Modals/reviewpost";
 export default function GameInfo({ game, user }) {
   const session = useSelector((state) => state.session);
   const [modal, setModal] = useState(false);
+  const [reviewModal, setReviewModal] = useState(false);
   if (!game) return null;
   if (game?.price === "None") game.price = null;
   let avgRating = game?.reviews
     ? game.reviews.reduce((acc, { rating }) => acc + +rating, 0) /
       game.reviews.length
     : 0;
-
   return (
     <div className={style.container}>
       <h2>{game.name}</h2>
       <div className={style.gameInfo}>
         <Carousel game={game} />
         <span className={style.owner}>
-          Created by: <strong>{game?.owner?.username}</strong>
+          Created by:
+          {user ? (
+            <strong>{game?.owner?.username}</strong>
+          ) : (
+            <Link to={`/users/${game?.owner_id}`}>
+              <strong>{game?.owner?.username}</strong>
+            </Link>
+          )}
           {+session?.user?.id === +game.owner_id && (
             <>
               <button
@@ -85,15 +92,23 @@ export default function GameInfo({ game, user }) {
           </div>
         </div>
         <div className={style.buttons}>
-          {session?.user && (
+          {session?.user && session?.user.id !== game?.owner_id && (
             <button className="primary-button">Add to cart</button>
           )}
-          {session?.user && (
-            <button className="secondary-button">Add review</button>
+          {session?.user && session?.user.id !== game?.owner_id && (
+            <button
+              onClick={() => setReviewModal(true)}
+              className={`secondary-button`}
+            >
+              Add review
+            </button>
           )}
         </div>
       </div>
       {modal && <ConfirmDelete setModal={setModal} listingId={game?.id} />}
+      {reviewModal && (
+        <ReviewPost setModal={setReviewModal} listingId={game?.id} />
+      )}
     </div>
   );
 }

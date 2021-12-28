@@ -7,7 +7,7 @@ class Review(db.Model):
     __tablename__ = 'reviews'
 
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(300), nullable=False)
+    content = db.Column(db.String(200), nullable=False)
     rating = db.Column(db.Numeric(3, 2), nullable=False)
     listing_id = db.Column(db.Integer, db.ForeignKey(
         'listings.id'), nullable=False)

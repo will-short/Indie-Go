@@ -33,6 +33,7 @@ export default function GameCard({ game }) {
           />
           <span>({game?.reviews?.length || 0})</span>
         </div>
+        <span>Price: {game?.price || "free"}</span>
         {bestReview && <p>"{bestReview?.content}"</p>}
         {bestReview && (
           <span style={{ "margin-left": "1rem" }}>

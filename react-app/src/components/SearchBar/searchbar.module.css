@@ -31,3 +31,12 @@
   cursor: pointer;
   border: none;
 }
+.toggle {
+  right: 50px;
+  top: 0.7rem;
+  position: absolute;
+  content: "";
+  height: 24px;
+  cursor: pointer;
+  border: none;
+}

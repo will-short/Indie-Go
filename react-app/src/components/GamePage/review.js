@@ -18,10 +18,12 @@ export default function Review({ review }) {
         <p>"{review.content}"</p>
         <div className={style.likesContainer}>
           <span>
-            <i className="material-icons-outlined">thumb_up</i> {review?.likes}
+            <i className="material-icons-outlined">thumb_up</i>{" "}
+            {review?.likes || 0}
           </span>
           <span>
-            <i class="material-icons-outlined">thumb_down</i> {review?.dislikes}
+            <i class="material-icons-outlined">thumb_down</i>{" "}
+            {review?.dislikes || 0}
           </span>
         </div>
       </div>

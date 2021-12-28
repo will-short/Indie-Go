@@ -8,10 +8,10 @@ export default function SearchBar() {
   const [query, setQuery] = useState();
   function searchFunc(e) {
     e.preventDefault();
-    history.push(`/listings?name=${query}`);
+    if (query) history.push(`/listings?name=${query}`);
   }
   return (
-    <div className={style.container}>
+    <div className={style.container} onclick={() => console.log("!!!!!!!!!!")}>
       <form onSubmit={searchFunc}>
         <input
           type="search"
