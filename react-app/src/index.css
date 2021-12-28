@@ -141,7 +141,6 @@ a {
   border-radius: 10px;
 }
 a#forward {
-  margin-top: 10px;
   margin-right: 10%;
 }
 .disabled {
@@ -201,4 +200,8 @@ span.tags.horror {
 }
 span.tags.platformer {
   background-color: #7fff00;
+}
+
+button.delete {
+  background-color: red !important;
 }

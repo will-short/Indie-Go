@@ -10,7 +10,6 @@ function User({ user }) {
   }
   let listings = user?.listings;
   let tags = new Set(listings?.flatMap((listing) => listing.tags));
-  console.log(tags);
   return (
     <div className={style.container}>
       <img src={user?.image_url} alt="" />
@@ -18,7 +17,8 @@ function User({ user }) {
         <strong>{user?.username}</strong>
       </span>
       <span>
-        Games listed: <strong>5</strong>
+        Games listed: <strong>{listings?.length}</strong>, Reviews posted:
+        <strong>{user?.reviews?.length}</strong>
       </span>
       <span>tags:</span>
       <div className={style.tags}>

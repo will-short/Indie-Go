@@ -19,6 +19,8 @@ class Listing(db.Model):
         db.DateTime(), onupdate=func.now(), default=func.now())
 
     users = db.relationship('User', back_populates='listings')
+    reviews = db.relationship(
+        'Review', back_populates='listings', cascade="all, delete")
     tags = db.relationship(
         'Tag', back_populates='listings', cascade="all, delete")
 
@@ -28,7 +30,20 @@ class Listing(db.Model):
     def listingId(self):
         return self.id
 
+    def listingInfo(self):
+        return {
+            'name': self.name,
+            'video_url': self.video_url,
+            'image_urls': json.loads(self.image_urls.replace("'", '"')),
+            'description': self.description,
+            "price": str(self.price),
+            'owner_id': self.owner_id,
+        }
+        #int(''.join(c for c in time if c.isdigit()))
+
     def to_dict(self):
+        reviews = [review.to_dict() for review in self.reviews]
+        reviews.sort(key=lambda review: review["created_at"])
         return {
             'id': self.id,
             'name': self.name,
@@ -37,7 +52,9 @@ class Listing(db.Model):
             'description': self.description,
             "price": str(self.price),
             'owner_id': self.owner_id,
+            'owner': self.users.info(),
             'tags': self.tags[0].to_list() if self.tags else [],
+            'reviews': reviews,
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }

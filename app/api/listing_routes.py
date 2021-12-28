@@ -16,7 +16,7 @@ def listings():
     return {"listings": {listing.listingId(): listing.to_dict() for listing in listings}}
 
 
-@listing_routes.route('/<int:listingId>', methods=['DELETE'])
+@listing_routes.route('/<int:listingId>/', methods=['DELETE'])
 @login_required
 def deleteLisiting(listingId):
     listing = Listing.query.get(listingId)
@@ -25,7 +25,7 @@ def deleteLisiting(listingId):
     return listing.to_dict()
 
 
-@listing_routes.route('/<int:listingId>', methods=['PUT'])
+@listing_routes.route('/<int:listingId>/', methods=['PUT'])
 @login_required
 def editListing(listingId):
     form = ListingForm()
@@ -131,4 +131,3 @@ def postListing():
     db.session.add(tags)
     db.session.commit()
     return listing.to_dict()
-    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401

@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
         db.DateTime(), onupdate=func.now(), default=func.now())
 
     listings = db.relationship('Listing', back_populates='users')
+    reviews = db.relationship('Review', back_populates='users')
 
     @property
     def password(self):
@@ -31,6 +32,13 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def info(self):
+        return{
+            'username': self.username,
+            'email': self.email,
+            'image_url': self.image_url
+        }
+
     def to_dict(self):
         listingInfo = [listing.to_dict()
                        for listing in self.listings[::-1]]
@@ -41,6 +49,7 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'image_url': self.image_url,
             'listings': listingInfo,
+            'reviews': [review.to_dict() for review in self.reviews],
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }
