@@ -12,6 +12,7 @@ def seed_listings():
         contents = f.readlines()
 
     ind = 0
+    reviewInd = 0
     # remove any duplicate games from game list from steam
 
     formattedGameData = list(set(contents))
@@ -58,14 +59,12 @@ def seed_listings():
                 platformer=platformer,
                 listing_id=ind)
             db.session.add(tags)
-            for z in range(random.randint(3, 9)):
+            for z in range(random.randint(3, 5)):
                 review = Review(
                     content=fake.sentence(nb_words=10),
                     rating=random.randint(1, 5),
                     listing_id=ind,
                     owner_id=random.randint(1, 100),
-                    likes=random.randint(1, 50),
-                    dislikes=random.randint(1, 50)
                 )
                 db.session.add(review)
         db.session.commit()

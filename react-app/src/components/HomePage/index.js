@@ -28,14 +28,16 @@ export default function HomePage() {
       let game = Object.values(listings).find((listing) =>
         listing?.tags.includes(tag)
       );
-      return (
-        <Link to={`listings?tags=${tag}`}>
-          <div className={style.content}>
-            <img src={game?.image_urls?.[0]} alt="" />
-            <h2>{`Top ${tag} games`}</h2>
-          </div>
-        </Link>
-      );
+      if (game) {
+        return (
+          <Link to={`listings?tags=${tag}`}>
+            <div className={style.content}>
+              <img src={game?.image_urls?.[0]} alt="" />
+              <h2>{`Top ${tag} games`}</h2>
+            </div>
+          </Link>
+        );
+      }
     });
   }
 

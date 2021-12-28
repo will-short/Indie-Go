@@ -49,6 +49,7 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'image_url': self.image_url,
             'listings': listingInfo,
+            'reviews': [review.to_dict() for review in self.reviews],
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }

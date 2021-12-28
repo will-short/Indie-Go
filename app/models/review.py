@@ -13,8 +13,6 @@ class Review(db.Model):
         'listings.id'), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(
         'users.id'), nullable=False)
-    likes = db.Column(db.Integer)
-    dislikes = db.Column(db.Integer)
     created_at = db.Column(db.DateTime(), nullable=False,
                            server_default=func.now())
     updated_at = db.Column(
@@ -22,6 +20,9 @@ class Review(db.Model):
 
     listings = db.relationship('Listing', back_populates='reviews')
     users = db.relationship('User', back_populates='reviews')
+
+    def reviewId(self):
+        return self.id
 
     def to_dict(self):
         return {
@@ -31,8 +32,6 @@ class Review(db.Model):
             'listing_id': self.listing_id,
             'owner_id': self.owner_id,
             'owner': self.users.info(),
-            "likes": self.likes,
-            'dislikes': self.dislikes,
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }
