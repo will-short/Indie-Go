@@ -6,7 +6,10 @@ import Rating from "@mui/material/Rating";
 import Carousel from "./carousel";
 import ConfirmDelete from "../Modals/confirmdelete";
 import ReviewPost from "../Modals/reviewpost";
+import { postListing } from "../../store/session";
+
 export default function GameInfo({ game, user }) {
+  const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
   const [modal, setModal] = useState(false);
   const [reviewModal, setReviewModal] = useState(false);
@@ -16,6 +19,10 @@ export default function GameInfo({ game, user }) {
     ? game.reviews.reduce((acc, { rating }) => acc + +rating, 0) /
       game.reviews.length
     : 0;
+
+  function addToCart() {
+    dispatch(postListing(game));
+  }
   return (
     <div className={style.container}>
       <h2>{game.name}</h2>
@@ -42,7 +49,7 @@ export default function GameInfo({ game, user }) {
               <Link
                 className="none material-icons"
                 style={{ color: "white", margin: "0 0 0 10%" }}
-                to={`/listings/${game.id}/edit/3`}
+                to={`/listings/${game?.id}/edit/3`}
               >
                 settings
               </Link>
@@ -92,10 +99,19 @@ export default function GameInfo({ game, user }) {
           </div>
         </div>
         <div className={style.buttons}>
-          {session?.user && session?.user.id !== game?.owner_id && (
-            <button className="primary-button">Add to cart</button>
+          {session?.user && session?.user?.id !== game?.owner_id && (
+            <button
+              className={
+                "primary-button" +
+                " " +
+                (session?.user?.cart_listings?.includes(game) && "disabled")
+              }
+              onClick={addToCart}
+            >
+              Add to cart
+            </button>
           )}
-          {session?.user && session?.user.id !== game?.owner_id && (
+          {session?.user && session?.user?.id !== game?.owner_id && (
             <button
               onClick={() => setReviewModal(true)}
               className={`secondary-button`}

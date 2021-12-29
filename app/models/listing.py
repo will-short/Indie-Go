@@ -1,6 +1,7 @@
 from .db import db
 from sqlalchemy.sql import func
 import json
+from .user import Cart_listings
 
 
 class Listing(db.Model):
@@ -23,6 +24,12 @@ class Listing(db.Model):
         'Review', back_populates='listings', cascade="all, delete")
     tags = db.relationship(
         'Tag', back_populates='listings', cascade="all, delete")
+    cart_owners = db.relationship(
+        "User",
+        secondary='cart_listings',
+        back_populates="listings",
+        overlaps="cart_listings"
+    )
 
     def owner(self):
         return self.users.to_dict()
@@ -39,11 +46,9 @@ class Listing(db.Model):
             "price": str(self.price),
             'owner_id': self.owner_id,
         }
-        #int(''.join(c for c in time if c.isdigit()))
 
     def to_dict(self):
         reviews = [review.to_dict() for review in self.reviews]
-        reviews.sort(key=lambda review: review["created_at"])
         return {
             'id': self.id,
             'name': self.name,

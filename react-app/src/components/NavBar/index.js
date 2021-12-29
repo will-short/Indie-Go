@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "../Modals";
 import UserControls from "./userControls";
-const NavBar = () => {
+const NavBar = ({ setCart, cart }) => {
   const [modal, setModal] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ const NavBar = () => {
         </NavLink>
         <SearchBar />
         <div className={style.userControls}>
-          <UserControls setModal={setModal} />
+          <UserControls setModal={setModal} setCart={setCart} cart={cart} />
         </div>
       </div>
       {modal && <Modal setModal={setModal} />}

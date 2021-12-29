@@ -13,10 +13,12 @@ import { allListings } from "./store/listings";
 import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
 import GamePage from "./components/GamePage";
+import Cart from "./components/Cart";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
+  const [cart, setCart] = useState(false);
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -31,38 +33,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path="/users" exact={true}>
-          <UsersList />
-        </Route>
-        <Route path="/users/:userId" exact={true}>
-          <ProfilePage />
-        </Route>
-        <Route
-          path={[
-            "/users/:userId/listings/new/:id",
-            "/listings/:listingId/edit/:id",
-          ]}
-        >
-          <ListingPostPage />
-        </Route>
-        <Route path="/listings/:listingId">
-          <GamePage />
-        </Route>
-        <Route path="/listings">
-          <SearchPage />
-        </Route>
-        <Route path="/" exact={true}>
-          <HomePage />
-        </Route>
-      </Switch>
+      <NavBar setCart={setCart} cart={cart} />
+      <Cart cart={cart} setCart={setCart}></Cart>
     </BrowserRouter>
   );
 }

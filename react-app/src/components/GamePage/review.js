@@ -19,10 +19,10 @@ export default function Review({ review, user }) {
             precision={0.5}
             style={{ color: "black" }}
           />
-          <span>
+          <span className={style.posted}>
             Posted on: <strong>{review?.created_at.split(" ")[0]}</strong>
           </span>
-          {session?.user.id === review?.owner_id && (
+          {session?.user?.id === review?.owner_id && (
             <button className="none" onClick={() => setModal(true)}>
               <i class="material-icons">settings</i>
             </button>

@@ -4,6 +4,19 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 
+class Cart_listings(db.Model):
+    __tablename__ = 'cart_listings'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+    )
+    listing_id = db.Column(
+        db.Integer,
+        db.ForeignKey("listings.id"),
+    )
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -11,7 +24,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    image_url = db.Column(db.String(255), nullable=True,
+    image_url = db.Column(db.String(260), nullable=True,
                           default="https://res.cloudinary.com/dc9htgupc/image/upload/v1636503578/ck9zfxgjkh8ovbvsczmu.png")
     created_at = db.Column(db.DateTime(), nullable=False,
                            server_default=func.now())
@@ -20,6 +33,12 @@ class User(db.Model, UserMixin):
 
     listings = db.relationship('Listing', back_populates='users')
     reviews = db.relationship('Review', back_populates='users')
+    cart_listings = db.relationship(
+        "Listing",
+        secondary='cart_listings',
+        back_populates="users",
+        cascade="all, delete"
+    )
 
     @property
     def password(self):
@@ -49,6 +68,7 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'image_url': self.image_url,
             'listings': listingInfo,
+            'cart_listings': [listing.listingInfo() for listing in self.cart_listings],
             'reviews': [review.to_dict() for review in self.reviews],
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
