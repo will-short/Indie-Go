@@ -56,14 +56,14 @@ export default function Modal({
           <p
             style={{
               color:
-                content.length < 1 || content.length > 200 ? "red" : "white",
+                content.length < 1 || content.length > 100 ? "red" : "white",
             }}
-          >{`${content.length}/200`}</p>
+          >{`${content.length}/100`}</p>
         </div>
         <div className={style.buttons}>
           <button
             className={
-              content.length < 1 || content.length > 200
+              content.length < 1 || content.length > 100
                 ? "primary-button disabled"
                 : `primary-button`
             }

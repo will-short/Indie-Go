@@ -11,6 +11,7 @@ import HomePage from "../HomePage";
 import SearchPage from "../SearchPage";
 import GamePage from "../GamePage";
 import Item from "./item";
+import Checkout from "./checkout";
 export default function Cart({ cart, setCart }) {
   const session = useSelector((state) => state.session);
   let total = 0;
@@ -25,22 +26,7 @@ export default function Cart({ cart, setCart }) {
       0
     );
   }
-  setTimeout(() => {
-    let el = document.querySelector(`.${style.cartSide}`);
 
-    if (el) {
-      el.classList.add(`${style.animate}`);
-    }
-    setTimeout(() => {
-      let el = document.querySelector(`.${style.cartSide}`);
-
-      if (el) {
-        el.style.position = "relative";
-        el.classList.remove(`${style.animate}`);
-        el.style.left = "0";
-      }
-    }, 1000);
-  }, 10);
   return (
     <div className="main">
       <Switch>
@@ -70,6 +56,13 @@ export default function Cart({ cart, setCart }) {
         <Route path="/listings">
           <SearchPage />
         </Route>
+        <Route path="/cart">
+          <Checkout
+            cartItems={session?.user?.cart_listings}
+            setCart={setCart}
+            total={total.toFixed(2)}
+          />
+        </Route>
         <Route path="/" exact={true}>
           <HomePage />
         </Route>
@@ -82,7 +75,8 @@ export default function Cart({ cart, setCart }) {
             <Item game={listing} />
           ))}
           <h3>total: ${total.toFixed(2)}</h3>
-          <button
+          <Link
+            to="/cart"
             className={
               "primary-button" +
               " " +
@@ -90,7 +84,7 @@ export default function Cart({ cart, setCart }) {
             }
           >
             <strong>Go to cart</strong>
-          </button>
+          </Link>
         </div>
       )}
     </div>

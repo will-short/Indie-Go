@@ -27,3 +27,15 @@ def removeCartItem(listingId):
     db.session.delete(cart)
     db.session.commit()
     return {"success": True}
+
+
+@cart_routes.route('/', methods=['DELETE'])
+@login_required
+def removeCartItems():
+    cart = Cart_listings.query.filter(
+        Cart_listings.user_id == current_user.id)
+    for listing in cart:
+        db.session.delete(listing)
+
+    db.session.commit()
+    return {"success": True}

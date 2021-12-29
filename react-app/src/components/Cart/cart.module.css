@@ -7,15 +7,8 @@
   padding: 1rem 0.2rem;
   background-color: #17191c;
   overflow-y: auto;
-  position: absolute;
-  left: 117vw;
-  /* transition: position 0.5s linear; */
 }
-.animate {
-  transition: left 0.5s linear;
-  left: 83vw;
-  /* position: relative; */
-}
+
 .cartSide > button {
   margin-top: 4px;
   width: 80%;
@@ -34,8 +27,9 @@
   justify-content: flex-start;
   background-color: #36383a;
   align-items: center;
-  gap: 5%;
+  gap: 1%;
   margin-bottom: 5px;
+  padding-right: 5px;
 }
 .item img {
   height: 80%;
@@ -45,4 +39,27 @@
 }
 .item button {
   margin: 0 5px 0 auto;
+}
+.cartTotal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  align-items: center;
+}
+.cartTotal > span {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+.cartTotal > button {
+  margin-top: 20px;
+  width: 40%;
+}
+.itemList {
+  display: grid;
+  width: 100%;
+  padding-top: 2rem;
+  row-gap: 1rem;
+  grid-template-columns: 100%;
 }

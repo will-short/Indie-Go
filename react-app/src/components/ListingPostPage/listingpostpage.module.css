@@ -4,6 +4,8 @@
   grid-template-rows: 6rem auto;
   row-gap: 2rem;
   overflow: hidden;
+  padding: 0 20%;
+  width: 100%;
 }
 .edit > header > a > div {
   border: 2px solid black !important;
