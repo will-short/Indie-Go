@@ -41,10 +41,10 @@ export const postListing = (listing) => async (dispatch) => {
 };
 export const deleteListing = (listing) => async (dispatch) => {
   dispatch(removeListing(listing));
-  fetch(`/api/cart/listings/${listing.id}/`, { method: "DELETE" });
+  fetch(`/api/cart/listings/${listing.id}/`, { method: "PUT" });
 };
 export const deleteAllListings = () => async (dispatch) => {
-  dispatch(removeListing());
+  dispatch(removeAllListings());
   fetch(`/api/cart/listings/`, { method: "DELETE" });
 };
 
@@ -140,18 +140,19 @@ export default function reducer(state = initialState, action) {
       if (state.user) {
         let newArr = state.user.cart_listings;
         newArr.push(action.listing);
-        state.user.cartlistings = newArr;
+        state.user.cart_listings = newArr;
       }
       return { ...state };
     case REMOVE_LISTING:
       if (state.user) {
         let newArr = state.user.cart_listings;
         let listingIndex = newArr.findIndex(
-          (listing) => action?.listing?.id === listing.id
+          (listing) => action.listing.id == listing.id
         );
         newArr.splice(listingIndex, 1);
-        state.user.cartlistings = newArr;
+        state.user.cart_listings = newArr;
       }
+      return { ...state };
     case REMOVE_ALL_LISTINGS:
       if (state.user) state.user.cart_listings = [];
       return { ...state };

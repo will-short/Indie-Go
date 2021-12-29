@@ -99,6 +99,14 @@ export default function HomePage() {
         {searchListings?.map((listing) => (
           <GameCard game={listing} />
         ))}
+        {!searchListings?.length && (
+          <>
+            <div style={{ width: "252px" }}></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </>
+        )}
       </div>
     </main>
   );

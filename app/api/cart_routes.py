@@ -19,7 +19,7 @@ def postCartItem():
     return {"success": True}
 
 
-@cart_routes.route('/<int:listingId>/', methods=['DELETE'])
+@cart_routes.route('/<int:listingId>/', methods=['PUT'])
 @login_required
 def removeCartItem(listingId):
     cart = Cart_listings.query.filter(

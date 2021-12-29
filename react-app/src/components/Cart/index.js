@@ -71,6 +71,7 @@ export default function Cart({ cart, setCart }) {
       {cart && (
         <div className={style.cartSide}>
           <h2>Your Cart</h2>
+          {console.log(session?.user?.cart_listings)}
           {session?.user?.cart_listings?.map((listing) => (
             <Item game={listing} />
           ))}
