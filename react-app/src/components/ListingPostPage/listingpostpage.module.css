@@ -1,6 +1,5 @@
 .main {
   display: grid;
-  padding: 0 19.5%;
   margin: 2rem 0.5%;
   grid-template-rows: 6rem auto;
   row-gap: 2rem;

@@ -135,6 +135,7 @@ a {
   border-radius: 10px;
   margin: 5px 5px;
   width: 14px;
+  z-index: 100;
 }
 ::-webkit-scrollbar-thumb {
   background: black;
@@ -204,4 +205,13 @@ span.tags.platformer {
 
 button.delete {
   background-color: red !important;
+}
+div.main {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+  justify-items: center;
 }

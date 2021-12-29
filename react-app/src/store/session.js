@@ -1,6 +1,8 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const ADD_LISTING = "user/ADD_LISTING";
+const REMOVE_LISTING = "user/REMOVE_LISTING";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -11,7 +13,23 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
+const addListing = (listing) => ({
+  type: ADD_LISTING,
+  listing,
+});
+const removeListing = (listing) => ({
+  type: REMOVE_LISTING,
+  listing,
+});
+
 const initialState = { user: null };
+
+export const postListing = (listing) => async (dispatch) => {
+  dispatch(addListing(listing));
+};
+export const deleteListing = (listing) => async (dispatch) => {
+  dispatch(removeListing(listing));
+};
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
@@ -101,6 +119,23 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload };
     case REMOVE_USER:
       return { user: null };
+    case ADD_LISTING:
+      if (state.user) {
+        let newArr = state.user.cart_listings;
+        newArr.push(action.listing);
+        state.user.cartlistings = newArr;
+      }
+      return { ...state };
+    case REMOVE_LISTING:
+      if (state.user) {
+        let newArr = state.user.cart_listings;
+        let listingIndex = newArr.findIndex(
+          (listing) => action?.listing?.id === listing.id
+        );
+        newArr.splice(listingIndex, 1);
+        state.user.cartlistings = newArr;
+      }
+      return { ...state };
     default:
       return state;
   }

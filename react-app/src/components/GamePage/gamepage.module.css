@@ -1,9 +1,13 @@
 .main {
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 1rem 20%;
+  width: 100%;
+  justify-items: flex-start;
+  grid-template-columns: 60vw;
+  padding: 1rem 0;
   overflow-y: auto;
   row-gap: 2rem;
+  padding-left: 20vw;
 }
 .reviewContainer {
   background-color: #36383a;

@@ -8,13 +8,11 @@ import UserDropdown from "./userDropdown";
 import dropDownStyle from "./dropDownStyle.module.css";
 import { useEffect } from "react";
 
-export default function UserControls({ setModal }) {
+export default function UserControls({ setModal, setCart, cart }) {
   const [toggleUserInfo, setToggleUserInfo] = useState(false);
   const session = useSelector((state) => state.session);
 
   function handleBlur(e) {
-    // if the blur was because of outside focus
-    // currentTarget is the parent element, relatedTarget is the clicked element
     if (!e.currentTarget.contains(e.relatedTarget)) {
       setToggleUserInfo(false);
     }
@@ -64,7 +62,7 @@ export default function UserControls({ setModal }) {
             />
           )}
         </button>
-        <button className={style.cart}>
+        <button className={style.cart} onClick={() => setCart(!cart)}>
           <span className="material-icons">shopping_cart</span>
         </button>
       </>
