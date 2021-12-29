@@ -21,33 +21,6 @@ export default function UserControls({ setModal, setCart, cart }) {
   if (session?.user) {
     return (
       <>
-        <Switch>
-          <Route path="/favorites">
-            <Link
-              to="/"
-              className="material-icons"
-              style={{
-                color: "#8a2be2",
-                width: "24px",
-              }}
-            >
-              favorite
-            </Link>
-          </Route>
-          <Route path="/">
-            <Link
-              to="/favorites"
-              className="material-icons"
-              style={{
-                color: "white",
-                width: "24px",
-              }}
-            >
-              favorite_outlined
-            </Link>
-          </Route>
-        </Switch>
-
         <button
           className={style.user}
           onClick={() => setToggleUserInfo(!toggleUserInfo)}
@@ -65,7 +38,6 @@ export default function UserControls({ setModal, setCart, cart }) {
         <button
           className={style.cart}
           onClick={() => {
-            console.log(cart);
             setCart(!cart);
           }}
         >

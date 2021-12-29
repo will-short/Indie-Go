@@ -10,12 +10,25 @@ import { useEffect } from "react";
 export default function Signup({ setModal }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
   const [image, setImage] = useState();
   const [username, setUsername] = useState("");
+  const [usernameErr, setUsernameErr] = useState("");
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword)
+      return setConfirmPasswordErr("passwords do not match");
     const data = await dispatch(signUp(image, username, email, password));
+    if (data) {
+      setEmailErr(data.email);
+      setPasswordErr(data.password);
+      setUsernameErr(data.username);
+      return;
+    }
     setModal(false);
   };
   useEffect(() => {
@@ -26,7 +39,7 @@ export default function Signup({ setModal }) {
   return (
     <div
       className={style.modalLogin}
-      style={{ height: "620px" }}
+      style={{ minHeight: "620px", height: "fit-content" }}
       onClick={(e) => e.stopPropagation()}
     >
       <img src={logo_words} alt="" className={style.logo} />
@@ -47,6 +60,7 @@ export default function Signup({ setModal }) {
             <input
               name="image"
               type="file"
+              accept="image/*"
               id="upload"
               onChange={(e) => setImage(e.target.files[0])}
             />
@@ -61,6 +75,7 @@ export default function Signup({ setModal }) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          {usernameErr && <p>{usernameErr}</p>}
         </div>
         <div className={style.loginInput}>
           <label htmlFor="email">Email address</label>
@@ -71,6 +86,7 @@ export default function Signup({ setModal }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {emailErr && <p>{emailErr}</p>}
         </div>
 
         <div className={style.loginInput}>
@@ -82,6 +98,7 @@ export default function Signup({ setModal }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {passwordErr && <p>{passwordErr}</p>}
         </div>
         <div className={style.loginInput}>
           <label htmlFor="confirmPassword">Confirm Password</label>
@@ -89,9 +106,10 @@ export default function Signup({ setModal }) {
             className={style.loginFormInputField}
             name="confirmPassword"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
+          {confirmPasswordErr && <p>{confirmPasswordErr}</p>}
         </div>
         <button>Sign up</button>
       </form>

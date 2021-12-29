@@ -30,6 +30,7 @@
   position: absolute;
   left: 15px;
   bottom: 10px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .images {

@@ -10,11 +10,19 @@ import { login } from "../../store/session";
 export default function Login({ setSignUp, setModal }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
   const handleLogin = async (e) => {
     e.preventDefault();
+
     const data = await dispatch(login(email, password));
-    setModal(false);
+    if (data) {
+      setEmailErr(data.email);
+      setPasswordErr(data.password);
+    } else {
+      setModal(false);
+    }
   };
   const demoLogin = async (e) => {
     const data = await dispatch(login("demo@aa.io", "password"));
@@ -38,6 +46,7 @@ export default function Login({ setSignUp, setModal }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {emailErr && <p>{emailErr}</p>}
         </div>
         <div className={style.loginInput}>
           <label htmlFor="password">Password</label>
@@ -48,6 +57,7 @@ export default function Login({ setSignUp, setModal }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {passwordErr && <p>{passwordErr}</p>}
         </div>
         <button>Sign in</button>
       </form>

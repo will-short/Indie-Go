@@ -12,10 +12,10 @@ def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
     """
-    errorMessages = []
+    errorMessages = {}
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages[field] = error
     return errorMessages
 
 
@@ -65,11 +65,6 @@ def sign_up():
 
     try:
         image = form.data["image"]
-    except:
-        image = None
-        image_url = None
-
-    if image:
         if not allowed_file(image.filename):
             return {"errors": "file type not permitted"}, 400
 
@@ -79,6 +74,9 @@ def sign_up():
             return upload, 400
 
         image_url = upload["url"]
+    except:
+        image = None
+        image_url = None
 
     if form.validate_on_submit():
         user = User(
