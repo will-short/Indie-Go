@@ -100,7 +100,7 @@ select:focus {
   outline: none;
 }
 
-input,
+input:not(.slider),
 textarea,
 select {
   -webkit-appearance: none;

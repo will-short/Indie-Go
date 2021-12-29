@@ -10,10 +10,6 @@ export default function GameCard({ game }) {
     ? game.reviews.reduce((acc, { rating }) => acc + +rating, 0) /
       game.reviews.length
     : 0;
-  let maxLikes = Math.max.apply(
-    Math,
-    game.reviews.map((review) => review.likes - review.dislikes)
-  );
   let bestReview = game.reviews[0];
   return (
     <Link to={`/listings/${game.id}`}>
