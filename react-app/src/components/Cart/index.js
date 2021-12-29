@@ -25,7 +25,22 @@ export default function Cart({ cart, setCart }) {
       0
     );
   }
+  setTimeout(() => {
+    let el = document.querySelector(`.${style.cartSide}`);
 
+    if (el) {
+      el.classList.add(`${style.animate}`);
+    }
+    setTimeout(() => {
+      let el = document.querySelector(`.${style.cartSide}`);
+
+      if (el) {
+        el.style.position = "relative";
+        el.classList.remove(`${style.animate}`);
+        el.style.left = "0";
+      }
+    }, 1000);
+  }, 10);
   return (
     <div className="main">
       <Switch>
@@ -59,25 +74,25 @@ export default function Cart({ cart, setCart }) {
           <HomePage />
         </Route>
       </Switch>
-      <div className={style.cart}>
-        {cart && (
-          <div className={style.cartSide}>
-            <h2>Your Cart</h2>
-            {session?.user?.cart_listings?.map((listing) => (
-              <Item game={listing} />
-            ))}
-            <button
-              className={
-                "primary-button" +
-                " " +
-                (!session?.user?.cart_listings?.length && "disabled")
-              }
-            >
-              Checkout total: ${total.toFixed(2)}
-            </button>
-          </div>
-        )}
-      </div>
+
+      {cart && (
+        <div className={style.cartSide}>
+          <h2>Your Cart</h2>
+          {session?.user?.cart_listings?.map((listing) => (
+            <Item game={listing} />
+          ))}
+          <h3>total: ${total.toFixed(2)}</h3>
+          <button
+            className={
+              "primary-button" +
+              " " +
+              (!session?.user?.cart_listings?.length && "disabled")
+            }
+          >
+            <strong>Go to cart</strong>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
