@@ -49,7 +49,7 @@ export default function GameInfo({ game, user }) {
               <Link
                 className="none material-icons"
                 style={{ color: "white", margin: "0 0 0 10%" }}
-                to={`/listings/${game.id}/edit/3`}
+                to={`/listings/${game?.id}/edit/3`}
               >
                 settings
               </Link>
@@ -99,7 +99,7 @@ export default function GameInfo({ game, user }) {
           </div>
         </div>
         <div className={style.buttons}>
-          {session?.user && session?.user.id !== game?.owner_id && (
+          {session?.user && session?.user?.id !== game?.owner_id && (
             <button
               className={
                 "primary-button" +
@@ -111,7 +111,7 @@ export default function GameInfo({ game, user }) {
               Add to cart
             </button>
           )}
-          {session?.user && session?.user.id !== game?.owner_id && (
+          {session?.user && session?.user?.id !== game?.owner_id && (
             <button
               onClick={() => setReviewModal(true)}
               className={`secondary-button`}

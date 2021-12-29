@@ -27,7 +27,8 @@ class Listing(db.Model):
     cart_owners = db.relationship(
         "User",
         secondary='cart_listings',
-        back_populates="listings"
+        back_populates="listings",
+        overlaps="cart_listings"
     )
 
     def owner(self):

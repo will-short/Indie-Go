@@ -62,7 +62,13 @@ export default function UserControls({ setModal, setCart, cart }) {
             />
           )}
         </button>
-        <button className={style.cart} onClick={() => setCart(!cart)}>
+        <button
+          className={style.cart}
+          onClick={() => {
+            console.log(cart);
+            setCart(!cart);
+          }}
+        >
           <span className="material-icons">shopping_cart</span>
         </button>
       </>

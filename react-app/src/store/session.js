@@ -26,9 +26,17 @@ const initialState = { user: null };
 
 export const postListing = (listing) => async (dispatch) => {
   dispatch(addListing(listing));
+  fetch(`/api/cart/listings/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(listing),
+  });
 };
 export const deleteListing = (listing) => async (dispatch) => {
   dispatch(removeListing(listing));
+  fetch(`/api/cart/listings/${listing.id}/`, { method: "DELETE" });
 };
 
 export const authenticate = () => async (dispatch) => {

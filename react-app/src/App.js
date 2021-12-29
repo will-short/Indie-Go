@@ -19,7 +19,6 @@ function App() {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
   const [cart, setCart] = useState(false);
-  console.log(cart);
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());

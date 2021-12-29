@@ -14,12 +14,18 @@ import Item from "./item";
 export default function Cart({ cart, setCart }) {
   const session = useSelector((state) => state.session);
   let total = 0;
+  useEffect(() => {
+    if (session?.user?.cart_listings?.length === 1 && !cart) {
+      setCart(true);
+    }
+  }, [session]);
   if (session?.user?.cart_listings?.length) {
     total = session?.user?.cart_listings?.reduce(
       (acc, listing) => acc + +listing.price,
       0
     );
   }
+
   return (
     <div className="main">
       <Switch>
@@ -67,7 +73,7 @@ export default function Cart({ cart, setCart }) {
                 (!session?.user?.cart_listings?.length && "disabled")
               }
             >
-              Checkout total: ${total}
+              Checkout total: ${total.toFixed(2)}
             </button>
           </div>
         )}

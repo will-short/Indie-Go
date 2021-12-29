@@ -15,7 +15,7 @@ export default function Modal({
   reviewId,
 }) {
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(ratingInfo || 0);
+  const [rating, setRating] = useState(ratingInfo || 5);
   const [content, setContent] = useState(contentInfo || "");
 
   function handleSubmit() {
