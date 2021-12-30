@@ -36,3 +36,9 @@ This app is a combination of Etsy and Steam specifically for indie games, users 
 ## Profilepage
 
 ![profilepage](https://user-images.githubusercontent.com/16979047/147789132-39d33f57-5ca0-4dc4-aeb7-81143b267324.gif)
+
+# Architecture
+
+## Dataflow
+
+<img width="1424" alt="DataFlow" src="https://user-images.githubusercontent.com/16979047/147791443-9a71c887-726b-430f-b8af-f2e43c1c41ec.png">
