@@ -41,4 +41,4 @@ This app is a combination of Etsy and Steam specifically for indie games, users 
 
 ## Dataflow
 
-<img width="1424" alt="DataFlow" src="https://user-images.githubusercontent.com/16979047/147791443-9a71c887-726b-430f-b8af-f2e43c1c41ec.png">
+<img width="1360" alt="DataFlow" src="https://user-images.githubusercontent.com/16979047/147791919-5b24d739-616a-4e79-aba8-6e74f8785440.png">
