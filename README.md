@@ -188,48 +188,8 @@ def postListing():
 <a name="frontend"></a>
 ## Frontend
 
-### Redux Store ([React-Redux](https://react-redux.js.org/))
 
-Redux is used to keep a site wide state for the current logged in user and all game listings.  On application start Redux stores all listings, while this causes initial load time to be longer it allows for a fast experience with game listings after initial load.  
-
-Part of the Redux state tree (1 and 2 are game listings):
-![image](https://user-images.githubusercontent.com/16979047/147793185-6ed89a60-953c-4c8d-a6d0-58826d69ec17.png)
-
-Redux uses Thunks to communicate to the backend and then change state with an Action based on the response
-
-Thunk for `POST` listing:
-```js
-// in react-app/src/store/listings.js
-export const postListing =
-  (video, images, name, description, price, tags) => async (dispatch) => {
-    const formData = new FormData();
-    if (video) formData.append("video", video);
-    images.map((image, i) =>
-      image ? formData.append(`image${i + 1}`, image) : null
-    );
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("tags", JSON.stringify(tags));
-    if (price) formData.append("price", price);
-    const res = await fetch("/api/listings/", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-    dispatch(post(data));
-  };
-```
-Action dispatched with data from the response from server:
-```js
-// in react-app/src/store/listings.js
-const post = (listing) => ({
-  type: POST,
-  listing,
-});
-```
-
-## React [React](https://reactjs.org/)
+## React ([React](https://reactjs.org/))
 
 The front end of Indie-Go is all based in react.  React is one of the most popular JS frameworks for full stack aplications.  Using React Components with Redux state Indie-Go serves all the data from the backend to be viewed by the user.
 
@@ -274,5 +234,43 @@ function User({ user }) {
 export default User;
 ```
 
+### Redux Store ([React-Redux](https://react-redux.js.org/))
 
+Redux is used to keep a site wide state for the current logged in user and all game listings.  On application start Redux stores all listings, while this causes initial load time to be longer it allows for a fast experience with game listings after initial load.  
 
+Part of the Redux state tree (1 and 2 are game listings):
+![image](https://user-images.githubusercontent.com/16979047/147793185-6ed89a60-953c-4c8d-a6d0-58826d69ec17.png)
+
+Redux uses Thunks to communicate to the backend and then change state with an Action based on the response
+
+Thunk for `POST` listing:
+```js
+// in react-app/src/store/listings.js
+export const postListing =
+  (video, images, name, description, price, tags) => async (dispatch) => {
+    const formData = new FormData();
+    if (video) formData.append("video", video);
+    images.map((image, i) =>
+      image ? formData.append(`image${i + 1}`, image) : null
+    );
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("tags", JSON.stringify(tags));
+    if (price) formData.append("price", price);
+    const res = await fetch("/api/listings/", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    dispatch(post(data));
+  };
+```
+Action dispatched with data from the response from server:
+```js
+// in react-app/src/store/listings.js
+const post = (listing) => ({
+  type: POST,
+  listing,
+});
+```
