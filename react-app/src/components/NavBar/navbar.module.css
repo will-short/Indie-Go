@@ -11,6 +11,8 @@ nav {
   justify-content: center;
   padding-right: 5rem;
   gap: 1rem;
+  height: 100%;
+  position: relative;
 }
 .homeLink {
   height: 40%;
@@ -56,4 +58,54 @@ nav {
 }
 .userControls a {
   height: 24px;
+}
+
+.postedProgress {
+  height: 1.5rem;
+  width: 100vw;
+  position: absolute;
+  bottom: -0.6rem;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: linear-gradient(
+    to left,
+    var(--dark-background-color) 50%,
+    var(--secondary) 50%
+  );
+  background-size: 200% 100%;
+  animation: spinner 35s linear;
+}
+
+@keyframes spinner {
+  0% {
+    background-position: 100% bottom;
+  }
+  20% {
+    background-position: 50% bottom;
+  }
+  40% {
+    background-position: 30% bottom;
+  }
+  50% {
+    background-position: 20% bottom;
+  }
+  70% {
+    background-position: 10% bottom;
+  }
+  80% {
+    background-position: 9% bottom;
+  }
+  85% {
+    background-position: 8% bottom;
+  }
+  90% {
+    background-position: 7% bottom;
+  }
+  95% {
+    background-position: 6% bottom;
+  }
+  100% {
+    background-position: 5% bottom;
+  }
 }

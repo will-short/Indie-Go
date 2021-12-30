@@ -6,6 +6,7 @@
   overflow: hidden;
   padding: 0 20%;
   width: 100%;
+  overflow-y: auto;
 }
 .edit > header > a > div {
   border: 2px solid black !important;
@@ -117,6 +118,7 @@ header.header > span {
   justify-items: center;
   height: max-content;
   position: relative;
+  overflow-y: auto;
 }
 .page1Container > label {
   width: 80%;

@@ -29,9 +29,36 @@
 }
 .main > aside {
   display: grid;
-  row-gap: 1rem;
+  row-gap: 2rem;
+  grid-template-rows: 1fr 1fr 2fr;
 }
 .main > aside > div {
   border: 1px solid grey;
   min-height: 100px;
+}
+.byPrice > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.byPrice {
+  display: grid;
+  grid-template-rows: auto 1fr 1fr;
+}
+.byPrice h3 {
+  text-align: center;
+}
+.byTags > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 1rem;
+}
+.byTags > div > span {
+  cursor: pointer;
+  height: max-content;
+}
+.activeTag {
+  padding: 0.5ch 2ch !important;
 }

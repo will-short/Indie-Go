@@ -7,7 +7,7 @@ import GameInfo from "../GameInfo";
 import { postListing, editListing } from "../../store/listings";
 import { useListing } from "../../context/ListingContext";
 
-export default function Page3({ absPath, listingId }) {
+export default function Page3({ absPath, listingId, posted, setPosted }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const session = useSelector((state) => state.session);
@@ -72,34 +72,65 @@ export default function Page3({ absPath, listingId }) {
   };
 
   function handleSubmit() {
-    if (!listing) {
-      dispatch(postListing(video, images, name, description, price, tags));
-    } else if (
-      name !== listing.name ||
-      description !== listing.description ||
-      JSON.stringify(tags) !== JSON.stringify(listing.tags) ||
-      video ||
-      images.length
-    ) {
-      console.log(
-        name !== listing.name,
-        description !== listing.description,
-        tags !== listing.tags,
-        video,
+    if (!video) {
+      if (!listing) {
+        dispatch(
+          postListing(video, images, name, description, price, tags)
+        ).then(() => history.push(`/users/${session.user.id}`));
+      } else if (
+        name !== listing.name ||
+        description !== listing.description ||
+        JSON.stringify(tags) !== JSON.stringify(listing.tags) ||
+        video ||
         images.length
-      );
-      images = images.map((el, i) => {
-        if (!el && image_urls[i]) {
-          return (el = image_urls[i]);
+      ) {
+        images = images.map((el, i) => {
+          if (!el && image_urls[i]) {
+            return (el = image_urls[i]);
+          }
+          return el;
+        });
+        dispatch(
+          editListing(video, images, name, description, price, listingId, tags)
+        ).then(() => history.push(`/users/${session.user.id}`));
+      }
+    } else {
+      setPosted(false);
+      (async () => {
+        if (!listing) {
+          await dispatch(
+            postListing(video, images, name, description, price, tags)
+          );
+          await setPosted(true);
+        } else if (
+          name !== listing.name ||
+          description !== listing.description ||
+          JSON.stringify(tags) !== JSON.stringify(listing.tags) ||
+          video ||
+          images.length
+        ) {
+          images = images.map((el, i) => {
+            if (!el && image_urls[i]) {
+              return (el = image_urls[i]);
+            }
+            return el;
+          });
+          await dispatch(
+            editListing(
+              video,
+              images,
+              name,
+              description,
+              price,
+              listingId,
+              tags
+            )
+          );
+          await setPosted(true);
         }
-        return el;
-      });
-
-      dispatch(
-        editListing(video, images, name, description, price, listingId, tags)
-      );
+      })();
+      history.push(`/users/${session.user.id}`);
     }
-    history.push(`/users/${session.user.id}`);
   }
   return (
     <div className={style.page3Container}>

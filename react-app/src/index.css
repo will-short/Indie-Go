@@ -100,7 +100,7 @@ select:focus {
   outline: none;
 }
 
-input,
+input:not(.slider),
 textarea,
 select {
   -webkit-appearance: none;
@@ -214,4 +214,35 @@ div.main {
   grid-auto-flow: column;
   grid-template-columns: 1fr;
   justify-items: center;
+}
+.unloaded {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
+  background-color: var(--dark-background-color);
+  transition: background-color 3s ease-in, height 0s 3s;
+}
+.loaded {
+  background-color: transparent;
+  height: 0;
+}
+
+.unloaded > div {
+  width: 50vw;
+  height: 40vh;
+  position: absolute;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 2s ease-in;
+}
+.loaded > div {
+  opacity: 0;
+  visibility: hidden;
 }
