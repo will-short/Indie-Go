@@ -1,16 +1,22 @@
 
 
-# Indie-Go
+# Indie-Go By William Short
 
-[Vist Indie-Go](https://harmony-io.herokuapp.com) 
-## By William Short
-<a href="https://www.linkedin.com/in/will-short/" target="_blank">
-<img width="40" src="https://user-images.githubusercontent.com/16979047/147777377-9d533f38-3f24-46a9-8a82-1906a53a1c9e.png"/></a>
+### [Vist Indie-Go](https://harmony-io.herokuapp.com) 
 
 
-## Getting started
+**Wiki Links**
+* [Features List](https://github.com/will-short/Indie-Go/wiki/Features-List)
+* [Database Schema](https://github.com/will-short/Indie-Go/wiki/Database-Schema) 
+* [User Stories](https://github.com/will-short/Indie-Go/wiki/User-Stories)
+* [Wire Frames](https://github.com/will-short/Indie-Go/wiki/Wire-Frames)
 
-1. Clone this repository (only this branch)
+## Indie-Go overview
+Indie-Go is a fullstack web-app using [React](https://reactjs.org/), [React-Redux](https://react-redux.js.org/), [Python/Flask](https://flask.palletsprojects.com/en/2.0.x/) and [PostgreSQL](https://www.postgresql.org/)  
+
+This app is a combination of Etsy and Steam specifically for indie games, users can search through over 400 pre seeded games from steam or post their own game!  Users can post reviews and add to their cart any game listing they do not own.
+
+### Clone this repository (only this branch)
 
    ```bash
    git clone https://github.com/appacademy-starters/python-project-starter.git
