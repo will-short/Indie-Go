@@ -110,8 +110,9 @@ export default function Page1({ absPath }) {
             type="number"
             value={price}
             placeholder="0.00"
+            min="0"
             onChange={(e) => {
-              setPrice(e.target.value);
+              setPrice(() => e.target.value > 0 && e.target.value);
             }}
           ></input>
         </label>

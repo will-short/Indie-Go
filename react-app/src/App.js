@@ -19,6 +19,8 @@ function App() {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
   const [cart, setCart] = useState(false);
+  const [posted, setPosted] = useState(true);
+
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -27,9 +29,9 @@ function App() {
     })();
   }, [dispatch]);
 
-  if (!loaded) {
-    return (
-      <div className="unloaded">
+  return (
+    <BrowserRouter>
+      <div className={loaded ? "unloaded loaded" : "unloaded"}>
         <div>
           <svg
             width="100%"
@@ -68,13 +70,22 @@ function App() {
           </svg>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <BrowserRouter>
-      <NavBar setCart={setCart} cart={cart} />
-      <Cart cart={cart} setCart={setCart}></Cart>
+      {loaded && (
+        <>
+          <NavBar
+            setCart={setCart}
+            cart={cart}
+            posted={posted}
+            setPosted={setPosted}
+          />
+          <Cart
+            cart={cart}
+            setCart={setCart}
+            posted={posted}
+            setPosted={setPosted}
+          ></Cart>
+        </>
+      )}
     </BrowserRouter>
   );
 }

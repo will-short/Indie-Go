@@ -34,7 +34,9 @@ export default function GameInfo({ game, user }) {
             <strong>{game?.owner?.username}</strong>
           ) : (
             <Link to={`/users/${game?.owner_id}`}>
-              <strong>{game?.owner?.username}</strong>
+              <strong>
+                {game?.owner?.username || session?.user?.username}
+              </strong>
             </Link>
           )}
           {+session?.user?.id === +game.owner_id && (
@@ -86,7 +88,9 @@ export default function GameInfo({ game, user }) {
           <div className={style.price}>
             PRICE:
             <span style={{ color: "white" }}>
-              {game?.price ? `$${game?.price}` : "Free"}
+              {game?.price
+                ? `$${(Math.round(+game?.price * 100) / 100).toFixed(2)}`
+                : "Free"}
             </span>
           </div>
           <div className={style.tags}>

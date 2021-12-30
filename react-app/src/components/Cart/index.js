@@ -12,7 +12,7 @@ import SearchPage from "../SearchPage";
 import GamePage from "../GamePage";
 import Item from "./item";
 import Checkout from "./checkout";
-export default function Cart({ cart, setCart }) {
+export default function Cart({ cart, setCart, posted, setPosted }) {
   const session = useSelector((state) => state.session);
   let total = 0;
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Cart({ cart, setCart }) {
             "/listings/:listingId/edit/:id",
           ]}
         >
-          <ListingPostPage />
+          <ListingPostPage posted={posted} setPosted={setPosted} />
         </Route>
         <Route path="/listings/:listingId">
           <GamePage />
@@ -71,7 +71,6 @@ export default function Cart({ cart, setCart }) {
       {cart && (
         <div className={style.cartSide}>
           <h2>Your Cart</h2>
-          {console.log(session?.user?.cart_listings)}
           {session?.user?.cart_listings?.map((listing) => (
             <Item game={listing} />
           ))}

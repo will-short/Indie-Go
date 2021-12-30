@@ -7,9 +7,9 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "../Modals";
 import UserControls from "./userControls";
-const NavBar = ({ setCart, cart }) => {
+const NavBar = ({ setCart, cart, posted, setPosted }) => {
   const [modal, setModal] = useState(false);
-
+  console.log(posted);
   return (
     <nav>
       <div className={style.content}>
@@ -24,6 +24,9 @@ const NavBar = ({ setCart, cart }) => {
         <div className={style.userControls}>
           <UserControls setModal={setModal} setCart={setCart} cart={cart} />
         </div>
+        {!posted && (
+          <div className={style.postedProgress}>---Posting Game!---</div>
+        )}
       </div>
       {modal && <Modal setModal={setModal} />}
     </nav>

@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import {
-  Link,
   NavLink,
   Route,
   Switch,
   useLocation,
   useParams,
 } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import style from "./listingpostpage.module.css";
 import { useState } from "react";
@@ -15,9 +13,8 @@ import Page1 from "./page1";
 import Page2 from "./page2";
 import Page3 from "./page3";
 import ListingProvider from "../../context/ListingContext";
-import { useListing } from "../../context/ListingContext";
 
-export default function ListingPostPage() {
+export default function ListingPostPage({ posted, setPosted }) {
   let url = useLocation();
   const absPath = url.pathname.slice(0, -1);
   const { listingId } = useParams();
@@ -67,7 +64,12 @@ export default function ListingPostPage() {
             <Page2 absPath={absPath} />
           </Route>
           <Route exact path={absPath + "3"}>
-            <Page3 absPath={absPath} listingId={listingId} />
+            <Page3
+              absPath={absPath}
+              listingId={listingId}
+              posted={posted}
+              setPosted={setPosted}
+            />
           </Route>
         </Switch>
       </main>
