@@ -14,7 +14,14 @@
 # Indie-Go overview
 Indie-Go is a fullstack web-app using [React](https://reactjs.org/), [React-Redux](https://react-redux.js.org/), [Python/Flask](https://flask.palletsprojects.com/en/2.0.x/) and [PostgreSQL](https://www.postgresql.org/)  
 
-This app is a combination of Etsy and Steam specifically for indie games, users can search through over 400 pre seeded games from steam or post their own game!  Users can post reviews and add to their cart any game listing they do not own.
+This app is a combination of Etsy and Steam specifically for indie games. 
+
+Users are able to:
+* Search through 400 pre seeded games from Steams's API
+* Create, update and delete their own game listing
+* Create, update and delete reviews on game listings
+* Add, remove games to the user's cart
+* Checkout with the games in the user's cart
 
 ## Homepage
 
