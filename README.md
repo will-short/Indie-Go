@@ -4,15 +4,10 @@
 
 ### [Vist Indie-Go](https://harmony-io.herokuapp.com) 
 
-
-**Wiki Links**
-* [Features List](https://github.com/will-short/Indie-Go/wiki/Features-List)
-* [Database Schema](https://github.com/will-short/Indie-Go/wiki/Database-Schema) 
-* [User Stories](https://github.com/will-short/Indie-Go/wiki/User-Stories)
-* [Wire Frames](https://github.com/will-short/Indie-Go/wiki/Wire-Frames)
-
 **Table of contents**
 * [Overview](#overview)
+* [Backend](#backend)
+* [Frontend](#frontend)
 
 
 <a name="overview"></a>
@@ -39,6 +34,11 @@ This app is a combination of Etsy and Steam specifically for indie games, users 
 
 # Architecture
 
+## Dataflow
+
+<img width="1360" alt="DataFlow" src="https://user-images.githubusercontent.com/16979047/147791919-5b24d739-616a-4e79-aba8-6e74f8785440.png">
+
+<a name="backend"></a>
 ## Backend
 
 ### Database ([PostgreSQL](https://www.postgresql.org/))
@@ -184,6 +184,8 @@ def postListing():
     db.session.commit()
     return listing.to_dict()
 ```
+
+<a name="frontend"></a>
 ## Frontend
 
 ### Redux Store ([React-Redux](https://react-redux.js.org/))
@@ -227,7 +229,7 @@ const post = (listing) => ({
 });
 ```
 
-##React
+## React [React](https://reactjs.org/)
 
 The front end of Indie-Go is all based in react.  React is one of the most popular JS frameworks for full stack aplications.  Using React Components with Redux state Indie-Go serves all the data from the backend to be viewed by the user.
 
@@ -273,6 +275,4 @@ export default User;
 ```
 
 
-## Dataflow
 
-<img width="1360" alt="DataFlow" src="https://user-images.githubusercontent.com/16979047/147791919-5b24d739-616a-4e79-aba8-6e74f8785440.png">
