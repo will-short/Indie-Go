@@ -1,6 +1,12 @@
-# Flask React Project
 
-This is the starter for the Flask React project.
+
+# Indie-Go
+
+[Vist Indie-Go](https://harmony-io.herokuapp.com) 
+## By William Short
+<a href="https://www.linkedin.com/in/will-short/" target="_blank">
+<img width="40" src="https://user-images.githubusercontent.com/16979047/147777377-9d533f38-3f24-46a9-8a82-1906a53a1c9e.png"/></a>
+
 
 ## Getting started
 
