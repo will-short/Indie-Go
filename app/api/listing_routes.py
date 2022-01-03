@@ -54,18 +54,19 @@ def editListing(listingId):
     listing.name = form.data["name"]
     listing.description = form.data["description"]
     listing.price = form.data["price"]
+    tagsList = json.loads(form.data["tags"])
 
-    tags.action = True if "action" in form.data["tags"] else None
-    tags.adventure = True if "adventure" in form.data["tags"] else None
-    tags.rpg = True if "rpg" in form.data["tags"] else None
-    tags.mmo = True if "mmo" in form.data["tags"] or "massively multiplayer" in form.data["tags"] else None
-    tags.casual = True if "casual" in form.data["tags"] else None
-    tags.sports = True if "sports" in form.data["tags"] else None
-    tags.simulation = True if "simulation" in form.data["tags"] else None
-    tags.strategy = True if "strategy" in form.data["tags"] else None
-    tags.racing = True if "racing" in form.data["tags"] else None
-    tags.rts = True if "rts" in form.data["tags"] else None
-    tags.horror = True if "horror" in form.data["tags"] or "violent" in form.data["tags"] else None
+    tags.action = tagsList.get("action")
+    tags.adventure = tagsList.get("adventure")
+    tags.rpg = tagsList.get("rpg")
+    tags.mmo = tagsList.get("mmo")
+    tags.casual = tagsList.get("casual")
+    tags.sports = tagsList.get("sports")
+    tags.simulation = tagsList.get("simulation")
+    tags.strategy = tagsList.get("strategy")
+    tags.racing = tagsList.get("racing")
+    tags.rts = tagsList.get("rts")
+    tags.horror = tagsList.get("horror")
     db.session.commit()
     return listing.to_dict()
 
@@ -75,7 +76,6 @@ def editListing(listingId):
 def postListing():
     form = ListingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if form.validate_on_submit():
     video = form.data["video"]
     videoURL = None
     if video:
@@ -101,31 +101,9 @@ def postListing():
     )
     db.session.add(listing)
     db.session.commit()
-    action = True if "action" in form.data["tags"] else None
-    adventure = True if "adventure" in form.data["tags"] else None
-    rpg = True if "rpg" in form.data["tags"] else None
-    mmo = True if "mmo" in form.data["tags"] or "massively multiplayer" in form.data["tags"] else None
-    casual = True if "casual" in form.data["tags"] else None
-    sports = True if "sports" in form.data["tags"] else None
-    simulation = True if "simulation" in form.data["tags"] else None
-    strategy = True if "strategy" in form.data["tags"] else None
-    racing = True if "racing" in form.data["tags"] else None
-    rts = True if "rts" in form.data["tags"] else None
-    horror = True if "horror" in form.data["tags"] or "violent" in form.data["tags"] else None
-    platformer = True if "platformer" in form.data["tags"] else None
+    tagsList = json.loads(form.data["tags"])
     tags = Tag(
-        action=action,
-        adventure=adventure,
-        rpg=rpg,
-        mmo=mmo,
-        casual=casual,
-        sports=sports,
-        simulation=simulation,
-        strategy=strategy,
-        racing=racing,
-        rts=rts,
-        horror=horror,
-        platformer=platformer,
+        **tagsList,
         listing_id=listing.listingId()
     )
     db.session.add(tags)
