@@ -2,7 +2,7 @@
 
 # Indie-Go By William Short
 
-### [Vist Indie-Go](https://harmony-io.herokuapp.com) 
+### [Vist Indie-Go](https://indie-go.herokuapp.com/) 
 
 **Table of contents**
 * [Overview](#overview)
