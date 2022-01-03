@@ -56,6 +56,7 @@ export const postListing =
     );
     formData.append("name", name);
     formData.append("description", description);
+    tags = tags.reduce((acc, tag) => ({ ...acc, [tag]: !!tag }), {});
     formData.append("tags", JSON.stringify(tags));
     if (price) formData.append("price", price);
     const res = await fetch("/api/listings/", {
@@ -77,6 +78,7 @@ export const editListing =
     formData.append("name", name);
     formData.append("description", description);
     if (price) formData.append("price", price);
+    tags = tags.reduce((acc, tag) => ({ ...acc, [tag]: !!tag }), {});
     formData.append("tags", JSON.stringify(tags));
     const res = await fetch(`/api/listings/${id}/`, {
       method: "PUT",

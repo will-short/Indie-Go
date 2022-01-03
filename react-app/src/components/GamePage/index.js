@@ -16,7 +16,7 @@ export default function GamePage() {
       <h1>Reviews:</h1>
       <div className={style.reviewList}>
         {reviews?.map((review) => (
-          <Review review={review} />
+          <Review review={review} key={review?.id} />
         ))}
       </div>
     </main>
