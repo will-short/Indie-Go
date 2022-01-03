@@ -20,7 +20,7 @@ export default function GameCard({ game }) {
         <div className={style.rating}>
           <Rating
             name="text-feedback"
-            value={avgRating}
+            value={+avgRating}
             readOnly
             precision={0.5}
             style={{ color: "black" }}
@@ -30,7 +30,7 @@ export default function GameCard({ game }) {
         <span>Price: {game?.price || "free"}</span>
         {bestReview && <p>"{bestReview?.content}"</p>}
         {bestReview && (
-          <span style={{ "margin-left": "1rem" }}>
+          <span style={{ marginLeft: "1rem" }}>
             - {bestReview?.owner?.username}
           </span>
         )}

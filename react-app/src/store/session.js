@@ -147,7 +147,7 @@ export default function reducer(state = initialState, action) {
       if (state.user) {
         let newArr = state.user.cart_listings;
         let listingIndex = newArr.findIndex(
-          (listing) => action.listing.id == listing.id
+          (listing) => +action.listing.id === +listing.id
         );
         newArr.splice(listingIndex, 1);
         state.user.cart_listings = newArr;

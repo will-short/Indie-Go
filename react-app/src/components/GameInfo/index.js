@@ -72,7 +72,7 @@ export default function GameInfo({ game, user }) {
           <div className={style.rating}>
             <Rating
               name="text-feedback"
-              value={avgRating}
+              value={+avgRating}
               readOnly
               precision={0.5}
               style={{ color: "black" }}

@@ -97,7 +97,7 @@ export default function HomePage() {
       </aside>
       <div className={style.gameList}>
         {searchListings?.map((listing) => (
-          <GameCard game={listing} />
+          <GameCard key={listing?.id} game={listing} />
         ))}
         {!searchListings?.length && (
           <>

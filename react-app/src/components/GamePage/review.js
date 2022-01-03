@@ -14,7 +14,7 @@ export default function Review({ review, user }) {
         <div className={style.ratingWrapper}>
           <Rating
             name="text-feedback"
-            value={review?.rating}
+            value={+review?.rating}
             readOnly
             precision={0.5}
             style={{ color: "black" }}

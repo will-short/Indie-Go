@@ -1,12 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Redirect,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Item from "./item";
 import style from "./cart.module.css";
@@ -15,7 +8,6 @@ import { deleteAllListings } from "../../store/session";
 export default function Checkout({ cartItems, setCart, total }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  // if (!cartItems || !cartItems.length) return <Redirect to="/" />;
   const [checkedOut, setCheckedOut] = useState(false);
 
   setCart(false);
@@ -39,7 +31,7 @@ export default function Checkout({ cartItems, setCart, total }) {
       )}
       <div className={style.itemList}>
         {cartItems?.map((item) => (
-          <Item game={item} />
+          <Item key={item?.id} game={item} />
         ))}
       </div>
       <span>

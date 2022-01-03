@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
 import style from "./cart.module.css";
-import LoginForm from "../auth/LoginForm";
-import SignUpForm from "../auth/SignUpForm";
-import UsersList from "../UserList";
 import ProfilePage from "../ProfilePage";
 import ListingPostPage from "../ListingPostPage";
 import HomePage from "../HomePage";
@@ -30,15 +27,6 @@ export default function Cart({ cart, setCart, posted, setPosted }) {
   return (
     <div className="main">
       <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path="/users" exact={true}>
-          <UsersList />
-        </Route>
         <Route path="/users/:userId" exact={true}>
           <ProfilePage />
         </Route>
@@ -72,7 +60,7 @@ export default function Cart({ cart, setCart, posted, setPosted }) {
         <div className={style.cartSide}>
           <h2>Your Cart</h2>
           {session?.user?.cart_listings?.map((listing) => (
-            <Item game={listing} />
+            <Item game={listing} key={listing?.id} />
           ))}
           <h3>total: ${total.toFixed(2)}</h3>
           <Link

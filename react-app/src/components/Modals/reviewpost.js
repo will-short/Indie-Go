@@ -40,7 +40,7 @@ export default function Modal({
           Rating:
           <Rating
             name="text-feedback"
-            value={rating}
+            value={+rating}
             onChange={(e) => setRating(e.target.value)}
             precision={0.5}
             size="large"

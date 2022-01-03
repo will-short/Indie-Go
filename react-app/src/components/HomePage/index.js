@@ -30,7 +30,7 @@ export default function HomePage() {
       );
       if (game) {
         return (
-          <Link to={`listings?tags=${tag}`}>
+          <Link to={`listings?tags=${tag}`} key={game?.id}>
             <div className={style.content}>
               <img src={game?.image_urls?.[0]} alt="" />
               <h2>{`Top ${tag} games`}</h2>
