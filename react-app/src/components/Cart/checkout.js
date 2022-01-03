@@ -37,7 +37,12 @@ export default function Checkout({ cartItems, setCart, total }) {
       <span>
         total: <strong>{total}</strong>
       </span>
-      <button className="primary-button" onClick={removeAll}>
+      <button
+        className={
+          cartItems.length ? "primary-button" : "primary-button disabled"
+        }
+        onClick={removeAll}
+      >
         Checkout
       </button>
     </main>
