@@ -160,31 +160,9 @@ def postListing():
     )
     db.session.add(listing)
     db.session.commit()
-    action = True if "action" in form.data["tags"] else None
-    adventure = True if "adventure" in form.data["tags"] else None
-    rpg = True if "rpg" in form.data["tags"] else None
-    mmo = True if "mmo" in form.data["tags"] or "massively multiplayer" in form.data["tags"] else None
-    casual = True if "casual" in form.data["tags"] else None
-    sports = True if "sports" in form.data["tags"] else None
-    simulation = True if "simulation" in form.data["tags"] else None
-    strategy = True if "strategy" in form.data["tags"] else None
-    racing = True if "racing" in form.data["tags"] else None
-    rts = True if "rts" in form.data["tags"] else None
-    horror = True if "horror" in form.data["tags"] or "violent" in form.data["tags"] else None
-    platformer = True if "platformer" in form.data["tags"] else None
+    tagsList = json.loads(form.data["tags"])
     tags = Tag(
-        action=action,
-        adventure=adventure,
-        rpg=rpg,
-        mmo=mmo,
-        casual=casual,
-        sports=sports,
-        simulation=simulation,
-        strategy=strategy,
-        racing=racing,
-        rts=rts,
-        horror=horror,
-        platformer=platformer,
+        **tagsList,
         listing_id=listing.listingId()
     )
     db.session.add(tags)
