@@ -9,7 +9,6 @@ import Modal from "../Modals";
 import UserControls from "./userControls";
 const NavBar = ({ setCart, cart, posted, setPosted }) => {
   const [modal, setModal] = useState(false);
-  console.log(posted);
   return (
     <nav>
       <div className={style.content}>

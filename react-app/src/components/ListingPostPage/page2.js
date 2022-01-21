@@ -36,7 +36,6 @@ export default function Page1({ absPath }) {
     images[3] = image4;
     images[4] = image5;
     setImages(images);
-    console.log(images);
   }, [image1, image2, image3, image4, image5]);
 
   useEffect(() => {

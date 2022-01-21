@@ -246,3 +246,7 @@ div.main {
   opacity: 0;
   visibility: hidden;
 }
+body > .MuiAutocomplete-popper * {
+  color: white;
+  background-color: #17191c;
+}

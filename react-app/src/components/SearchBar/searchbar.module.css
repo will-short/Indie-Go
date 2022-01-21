@@ -40,3 +40,7 @@
   cursor: pointer;
   border: none;
 }
+
+.container ul {
+  position: absolute;
+}

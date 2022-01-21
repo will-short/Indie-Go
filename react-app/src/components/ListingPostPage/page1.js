@@ -40,11 +40,12 @@ export default function Page1({ absPath }) {
       name.length <= 0 ||
       name.length >= 100 ||
       description.length <= 0 ||
-      description.length >= 500
+      description.length >= 500 ||
+      (!isNaN(+price) && +price > 999.99)
     )
       setLinkToggle("disabled");
     else setLinkToggle("");
-  }, [name, description]);
+  }, [name, description, price]);
   return (
     <div className={style.page1Container}>
       <label htmlFor="name">
@@ -104,7 +105,8 @@ export default function Page1({ absPath }) {
           ))}
         </div>
         <label htmlFor="price" className={style.priceLabel}>
-          Price - (if blank game will be listed for free)
+          Price - (if blank game will be listed for free) - price must be less
+          than 999.99
           <input
             name="price"
             type="number"

@@ -110,7 +110,6 @@ export const signUp =
     formData.append("email", email);
     formData.append("password", password);
 
-    console.log(formData.get("image"));
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       body: formData,

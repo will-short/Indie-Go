@@ -23,6 +23,4 @@ class Tag(db.Model):
     listings = db.relationship('Listing', back_populates='tags')
 
     def to_list(self):
-        print([tag for tag in self.__dict__ if self.__dict__[tag]
-              == True and tag != "id" and tag != "listing_id"])
         return [tag for tag in self.__dict__ if self.__dict__[tag] == True and tag != "id" and tag != "listing_id"]

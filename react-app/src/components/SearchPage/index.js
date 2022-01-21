@@ -18,12 +18,14 @@ export default function HomePage() {
   if (listings && tags) {
     searchListings = Object.values(listings)
       .filter((listing) => listing?.tags?.includes(tags))
-      .slice(0, 100);
+      .slice(0, 100)
+      .sort((a, b) => +b.price - +a.price);
   }
   if (listings && name) {
     searchListings = Object.values(listings)
       .filter((listing) => listing?.name.toLowerCase().includes(name))
-      .slice(0, 100);
+      .slice(0, 100)
+      .sort((a, b) => +b.price - +a.price);
   }
 
   const [searchTags, setSearchTags] = useState(new Set());

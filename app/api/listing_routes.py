@@ -12,7 +12,7 @@ listing_routes = Blueprint('listings', __name__)
 @listing_routes.route('/')
 def listings():
     listings = Listing.query.all()
-
+    print(listings)
     return {"listings": {listing.listingId(): listing.to_dict() for listing in listings}}
 
 

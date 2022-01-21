@@ -7,7 +7,6 @@ export default function Item({ game }) {
   const dispatch = useDispatch();
 
   function handleRemove() {
-    console.log({ game });
     dispatch(deleteListing(game));
   }
   return (

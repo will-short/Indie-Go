@@ -7,7 +7,7 @@ fake = Faker()
 
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', password='password', image_url=f"https://picsum.photos/id/{1005}/200")
     db.session.add(demo)
     for x in range(2, 112):
         additionalUser = User(
