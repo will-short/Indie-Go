@@ -2,7 +2,7 @@
 
 # Indie-Go By William Short
 
-### Since this was hosted on heroku this is currently down. Working on making a next.js version and hosting it on vercel!
+### Since this was hosted on heroku this is currently down. Working on making a next.js version and hosting it on vercel!  Below you can see information from the site when it was still up and running
 ### [Vist Indie-Go](https://indie-go.herokuapp.com/) 
 
 **Table of contents**
