@@ -2,8 +2,7 @@
 
 # Indie-Go By William Short
 
-### Since this was hosted on heroku this is currently down. Working on making a next.js version and hosting it on vercel!  Below you can see information from the site when it was still up and running
-### [Vist Indie-Go](https://indie-go.herokuapp.com/) 
+Selected personal project. The hosted demo is currently unavailable; screenshots and architecture notes are preserved below.
 
 **Table of contents**
 * [Overview](#overview)
@@ -13,12 +12,12 @@
 
 <a name="overview"></a>
 # Indie-Go overview
-Indie-Go is a fullstack web-app using [React](https://reactjs.org/), [React-Redux](https://react-redux.js.org/), [Python/Flask](https://flask.palletsprojects.com/en/2.0.x/) and [PostgreSQL](https://www.postgresql.org/)  
+Indie-Go is a full-stack web app using [React](https://reactjs.org/), [React-Redux](https://react-redux.js.org/), [Python/Flask](https://flask.palletsprojects.com/en/2.0.x/) and [PostgreSQL](https://www.postgresql.org/)  
 
 This app is a combination of Etsy and Steam specifically for indie games. 
 
 Users are able to:
-* Search through 400 pre seeded games from Steams's API
+* Search through 400 pre-seeded games from Steam's API
 * Create, update and delete their own game listing
 * Create, update and delete reviews on game listings
 * Add, remove games to the user's cart
@@ -51,7 +50,7 @@ Users are able to:
 
 ### Database ([PostgreSQL](https://www.postgresql.org/))
 
-The database for this app was set up to communicate with the server to store data for persistance between sessions and to serve back that data for games, listings and user cart details
+The database for this app was set up to communicate with the server to store data for persistence between sessions and to serve back that data for games, listings and user cart details
 
 <img src="https://user-images.githubusercontent.com/16979047/147774740-c2ca0e19-bd46-41fc-ae39-0c7145e68573.png"
   alt="Database Scheme"/>
@@ -177,7 +176,7 @@ def postListing():
 
 ## React ([React](https://reactjs.org/))
 
-The front end of Indie-Go is all based in react.  React is one of the most popular JS frameworks for full stack aplications.  Using React Components with Redux state Indie-Go serves all the data from the backend to be viewed by the user.
+The front end of Indie-Go is all based in react.  React is one of the most popular JS frameworks for full-stack applications.  Using React Components with Redux state Indie-Go serves all the data from the backend to be viewed by the user.
 
 User info component:
 ![image](https://user-images.githubusercontent.com/16979047/147793368-e5547d32-2af2-4fd3-b162-2b77dbcb2770.png)
